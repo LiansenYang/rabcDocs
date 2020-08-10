@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>Subversion（SVN）</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        video {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>@Subversion（SVN）</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="http://subversion.apache.org/" title="SVN官网" target="_blank">
+                        <i class="glyphicon glyphicon-globe"></i> SVN官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">简介</h1>
+                            <p class="lead">在实际的工作中，多人开发同一个项目时，可能会对共享文件进行操作。那么就有可能会产生诸如文件覆盖，代码丢失，错误难以追溯等问题。这些问题可以通过版本控制软件解决。</p>
+                            <p class="lead">版本控制<code>Revision Control</code>，最初来源于工程设计领域，是维护工程蓝图的标准做法，能追踪工程蓝图从诞生一直到定案的过程。是一种记录若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+                            <p class="lead"><code>Subversion</code>是<code>Apache</code>软件基金会组织下的一个项目，是一个开放源代码, 实现文件<strong>版本控制</strong>的工具软件，通常也称为版本控制器，简称<code>SVN</code></p>
+                        </div>
+                        <div id="work" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">工作原理</h1>
+                            <p class="lead"><code>SVN</code>采取<strong>客户端/服务器</strong>模式——在服务器的版本库中保存项目文件的各个版本，所有参与协同开发的程序员在自己本地电脑上保存一个工作副本。<p>
+                            <p class="lead"><code>SVN</code>支持程序员将本地副本更新到服务器端的最新版本，也支持将本地副本的最新改变更新到服务器端，而且后面的更新不会覆盖前面的更新，而是作为一个新的版本被保存下来——<code>SVN</code>甚至支持将本地工作副本恢复为服务器端保存的某一个历史版本。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-01.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead"><code>SVN</code>软件和<code>Maven</code>软件都可以在仓库中管理文件，只不过<code>Maven</code>软件是在仓库中管理项目的依赖关系（<code>JAR</code>），而<code>SVN</code>则是通过仓库维护项目的源码（<code>JAVA</code>），资源（<code>XML, properties</code>），文档（<code>doc, xls</code>）等文件</p>
+                        </div>
+                        <div id="install" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">软件安装</h1>
+                            <p class="lead">使用<code>SVN</code>软件，首先需要安装服务器端。用于创建资源仓库，管理文件。</p>
+                            <p class="lead">目前<code>Subversion</code>的最新版本是 <code>1.10.0-alpha3</code>，这是一个测试版。官方网站推荐使用的版本是<code>1.9.7</code>，原话是：<code>The best available version of Apache Subversion is: 1.9.7</code>，本课件采用的版本为<code>1.8.9</code></p>
+                            <p class="lead"><code>Apache</code>组织自己维护更新的只是<code>Subversion</code>的源码，各个版本的源码包的下载地址是：<a href="http://subversion.apache.org/download/" target="_blank"><code>http://subversion.apache.org/download/</code></a></p>
+                            <p class="lead">双击<code>Setup-Subversion-1.8.9-1.msi</code>进行服务器端软件安装，详细请点击视频</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <video style="width:100%;" onclick="switchVide(this)" src="/assets/video/svn-server.mp4" poster="/assets/img/title/svn-server.jpg" controls="controls">
+                                        your browser does not support the video tag
+                                    </video>
+                                </div>
+                            </div>
+                            <p class="lead">配置<code>path</code>环境变量指向<code>SVN</code>安装目录<code>bin</code>文件夹（默认已经配置）</p>
+                            <p class="lead">在控制台中输入<code>svn --version</code>指令后，如果出现如下内容说明服务器软件安装成功。</p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">C:\Users\18801>svn --version
+svn，版本 1.8.9 (r1591380)
+   编译于 May  8 2014，13:53:01 在 x86-microsoft-windows
+
+Copyright (C) 2014 The Apache Software Foundation.
+This software consists of contributions made by many people;
+see the NOTICE file for more information.
+Subversion is open source software, see http://subversion.apache.org/
+
+可使用以下的版本库访问模块:
+
+* ra_svn : 使用 svn 网络协议访问版本库的模块。  - 使用 Cyrus SASL 认证
+  - 处理“svn”方案
+* ra_local : 访问本地磁盘的版本库模块。
+  - 处理“file”方案
+* ra_serf : Module for accessing a repository via WebDAV protocol using serf.
+  - using serf 1.3.5
+  - 处理“http”方案
+  - 处理“https”方案
+</pre>                      </figure>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>如果服务器软件没有安装成功，出现2503的错误，可能是你当前系统用户没有权限，可以执行下面命令<code>msiexec /package D:\Setup-Subversion-1.8.9-1.msi</code>。</h4>
+                            </div>
+                            <p class="lead">服务器端软件安装后。需要安装客户端软件<code>TortoiseSVN</code>对服务器进行访问。</p>
+                            <p class="lead">双击<code>TortoiseSVN-1.8.7.25475-x64-svn-1.8.9.msi</code>进行客户端端软件安装，详细请点击视频</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12" >
+                                    <video style="width:100%;" onclick="switchVide(this)" src="/assets/video/svn-client.mp4" poster="/assets/img/title/svn-server.jpg" controls="controls">
+                                        your browser does not support the video tag
+                                    </video>
+                                </div>
+                            </div>
+                            <p class="lead">默认客户端软件界面为英文的，可以安装中文语言包<code>LanguagePack_1.8.7.25475-x64-zh_CN.msi</code>， 默认安装，然后在桌面点击右键选择菜单<code>TortoiseSVN <i class="glyphicon glyphicon-arrow-right"></i> Settings <i class="glyphicon glyphicon-arrow-right"></i> General <i class="glyphicon glyphicon-arrow-right"></i> Language </code>指定中文即可</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-05.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="create" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">创建SVN仓库</h1>
+                            <p class="lead"><code>SVN</code>软件和数据库软件是一样的，都是在服务器端存储，在客户端进行访问，只不过数据库存储和访问的是数据<code>Data</code>，而<code>SVN</code>存储和访问的是文件<code>File</code>。所以在使用<code>SVN</code>前，必须创建仓库。</p>
+                            <p class="lead">在<b>无空格，无中文</b>的路径中创建空文件夹<code>svn-repertory</code>，选中文件夹后右键选择菜单<code>TortoiseSVN <i class="glyphicon glyphicon-arrow-right"></i> 在此创建版本库 </code><p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-06.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">版本库创建后，会在<code>svn-repertory</code>文件夹中增加相应的文件结构</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-07.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">执行<code>DOS</code>命令<code style="color:#FFF;background:#000;">svnserve -d -r 仓库的完整路径</code>启动<code>SVN</code>服务器。</p>
+                            <p> <code style="color:#FFF;background:#000;">svnserve</code>表示命令<br><code style="color:#FFF;background:#000;">-d</code>命令的第一个参数，表示后台执行<br><code style="color:#FFF;background:#000;">-r</code>命令的第二个参数，表示版本库根目录 </p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">Microsoft Windows [版本 10.0.10586]
+(c) 2016 Microsoft Corporation。保留所有权利。
+
+C:\Users\18801>svnserve -d -r D:\KnowledgeHierarchy\repertory\svn-repertory
+
+
+</pre>                      </figure>
+                            <p class="lead">服务器启动后，就可以通过<code>TortoiseSVN</code>客户端软件访问了。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-08.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">在浏览器窗口中输入访问地址<code>svn://127.0.0.1</code></p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-10.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-11.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>使用<code>TortoiseSVN</code>客户端访问<code>SVN</code>服务器时，必须保证服务器启动，否则会访问失败。</h4>
+                                <div class="row">
+                                  <div class="col-xs-12 col-md-12">
+                                    <a href="#" class="thumbnail">
+                                      <img src="/assets/img/li/sts-svn-09.jpg" alt="svn">
+                                    </a>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="auth" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">授权访问</h1>
+                            <p class="lead"><code>SVN</code>软件和数据库软件在访问上是一样的，如果想要在仓库中进行操作，必须授权才可以，否则无法进行操作。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-12.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">让用户可以通过客户端访问仓库资源，必须在<code>SVN</code>服务器中，创建用户，设置密码并授权，具体操作如下：打开<code>svn-repertory/conf/svnserve.conf</code>配置文件，修改配置开启授权功能。</p>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                            <p >将第<code>19</code>行<code># anon-access = write</code>注释及空格去掉，修改为：<code>anon-access = none</code>, 表明该版本库不接受匿名访问。</p>
+                            <p >将第<code>20</code>行<code># auth-access = write</code>注释及空格去掉，表明该版本库使用授权访问。</p>
+                            <p >将第<code>27</code>行<code># password-db = passwd</code>注释及空格去掉，表明使用同目录下的<code>passwd</code>文件保存用户信息。</p>
+                            <p >将第<code>36</code>行<code># authz-db = authz</code>注释及空格去掉，表明使用同目录下的<code>authz</code>文件保存权限信息。</p>
+                            </div>
+                            <p class="lead">打开<code>svn-repertory/conf/passwd</code>文件，创建用户</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">zhangsan=123456
+lisi=123456
+wangwu=123456
+</code></pre></figure>
+                            <p class="lead">打开<code>svn-repertory/conf/authz</code>文件，创建用户组</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">[groups]
+# harry_and_sally = harry,sally
+# harry_sally_and_joe = harry,sally,&joe
+team-manager=zhangsan,lisi,wangwu
+</code></pre></figure>
+                            <p class="lead">打开<code>svn-repertory/conf/authz</code>文件，给用户和用户组授权</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">[/]
+@team-manager=rw
+wangwu=r
+*=
+</code></pre></figure>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>由于<code>SVN</code>版本库中存储的是文件，所以存在路径的问题。设置权限时，可以对不同的路径设置不同的读写权限。设置父路径的权限后，子路径也同时设定为相同的权限。</h4>
+                            </div>
+                            <p class="lead">设置用户并授权后，就可以使用设置好的用户和密码访问版本库了。SVN服务器不需要重新启动。</p>
+                        </div>
+                        <div id="basic" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">客户端基本操作</h1>
+                            <p class="lead">对数据库的访问，无外乎新增数据，修改数据，删除数据，查询数据，对<code>SVN</code>版本库的访问，也基本类似，新增文件，修改文件，删除文件，查询文件。</p>
+                            <p class="lead">虽然操作方式类似，但使用时还是有一些区别：</p>
+                            <p class="lead">操作数据库数据时，可以通过客户端工具直接操作，虽然是在客户端直接操作，但其实是通过客户端工具直接对服务器数据进行操作。</p>
+                            <p class="lead">操作<code>SVN</code>版本库中存储的文件时，我们一般是对文件内容进行操作，而不是直接对文件本身直接操作，<strong>所以需要将文件从服务器中下载到本地后进行处理</strong>。所以和数据库访问数据对比，两者之间还是有一定的区别的。</p>
+                            <h3 id="overview-doctype">查询文件</h3>
+                            <p class="lead">如果服务器有文件，但用户本地没有文件，那么就需要通过客户端工具从服务器中查询文件后将文件下载到本地。可以使用客户端工具的<code>checkout</code>（检出）操作</p>
+                            <p class="lead">右键选择菜单<code>TortoiseSVN <i class="glyphicon glyphicon-arrow-right"></i> 版本库浏览器（R） </code>，输入服务器地址<code>svn://127.0.0.1/</code>， 打开服务器浏览窗口</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-13.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">在服务器文件上点击右键选择菜单：<strong>检出（K）...</strong></p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-14.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">将服务器文件下载到本地指定目录<code>e:\temp\svn-local</code>中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-15.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead"><code>e:\temp\svn-local</code>目录中文件和服务器的文件存在关联关系，所以目录及目录中的文件图标都会发生变化</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-16.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-17.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>本地系统怎么知道当前<code>e:\temp\svn-local</code>目录和<code>SVN</code>版本库存在关联？</h4>
+                                <p>当执行<code>checkout</code>操作时，会在<code>e:\temp\svn-local</code>目录中增加一个隐藏文件夹<code>.svn</code>，这个文件夹将本地目录和服务器文件进行了关联。<strong>如果将这个文件夹删除，那么本地目录和服务器文件之间就没有任何关联了。</strong></p>
+                                <div class="row">
+                                  <div class="col-xs-12 col-md-12" >
+                                    <a href="#" class="thumbnail">
+                                      <img src="/assets/img/li/sts-svn-18.jpg" alt="svn">
+                                    </a>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>本地文件和服务器文件有什么关系？</h4>
+                                <p>服务器文件是所有用户共享的，都可以通过客户端进行访问。而本地文件是独享的，其他用户访问不了，只有你自己能访问。也可以简单的理解为，本地文件是服务器文件的副本。对本地文件的修改不会影响服务器中的文件。</p>
+                            </div>
+                            <h3 id="overview-doctype">新增文件</h3>
+                            <p class="lead">如果服务器没有文件，但是本地有新的文件，想要共享给其他用户，那么就要将本地新的文件上传到服务器版本库中。可以使用<code>commit</code>提交操作。</p>
+                            <p class="lead">在<code>e:\temp\svn-local</code>目录中添加新文件<code>a.txt</code>，右键点击文件<code>a.txt</code>选择菜单<code>TortoiseSVN <i class="glyphicon glyphicon-arrow-right"></i> 加入（A）</code>，文件图标发生了变化，表示当前文件<b>准备</b>要上传到服务器中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-19.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果想要完成真正的上传，那么可以右键点击文件<code>a.txt</code>选择菜单<code>SVN提交（C）...</code>完成上传操作，文件的图标会发生变化。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-20.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-21.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">修改文件</h3>
+                            <p class="lead">服务器和本地有相同的文件<code>a.txt</code>，但是本地文件进行了修改，文件的状态图标会发生变化。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-22.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">想要将修改后的文件共享给其他用户，那么就需要将本地文件<code>commit</code>（提交）到服务器中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-23.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果本地文件没有变化，服务器的文件发生了变化，想要将服务器中修改后的文件同步到本地，那么就需要将服务器文件<code>update</code>（更新）到本地目录中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-24.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">文件冲突</h3>
+                            <p class="lead">服务器和本地有相同的文件<code>a.txt</code>，如果本地文件和服务器文件都发生了变化，那么就会产生冲突，因为不知道哪一个文件是正确的。如果将本地文件<code>commit</code>(提交)到服务器中，就会发现提交不成功。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-25.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果将服务器文件<code>update</code>（更新）到本地，那么由于文件不一样，为了避免本地文件直接被服务器文件覆盖，所以会产生多个版本文件。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-26.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">右键点击文件<code>a.txt</code>，选择菜单<code>TortoiseSVN <i class="glyphicon glyphicon-arrow-right"></i> 解决（O）</code></p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-27.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">这里的解决并不是真正的解决，而是将不同的文件内容进行合并，由用户自行判断如何修改。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-28.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>文件冲突产生的原因？</h4>
+                                <p><code>SVN</code>软件会为服务器每一次操作的文件增加或更新版本号，用于记录文件的每一次操作。这样可以追溯不同的历史版本。</p>
+                                <p>当一个用户提交文件时，服务器会首先判断，当前提交的文件和服务器的文件版本号是否一致，如果一致，那么服务器的文件版本号以及本地文件的版本号会同时更新成最新版本号。这样，其他用户提交的文件由于版本号小而无法提交，所以产生版本号过期的错误。这种方式体现了<strong>乐观锁</strong>的概念。</p>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>如何避免文件发生冲突？</h4>
+                                <p>实际工作中文件冲突是无法避免的。如果碰见了，那么就需要想办法解决，最简单的办法就是记录自己本地的修改内容，接着删除本地文件，然后取得服务器最新文件后加锁，不让其他用户进行修改，最后修改完成后提交就可以了。</p>
+                            </div>
+                            <h3 id="overview-doctype">删除文件</h3>
+                            <p class="lead">服务器和本地有相同的文件<code>a.txt</code>，如果本地文件误删除，此时服务器文件还依然存在，所以可以从服务器将最新的文件<code>update</code>更新到本地。如果也希望服务器的文件删除，那么需要进行<code>commit</code>提交操作</p>
+                        </div>
+                        <div id="merge" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">开发工具集成</h1>
+                            <p class="lead">实际工作中，为了保证项目的源码文件不会冲突，需要将项目源码纳入到版本库中，所以需要在开发工具中集成<code>SVN</code>版本库。</p>
+                            <p class="lead">通过<code>STS</code>菜单操作安装<code>SVN</code>插件，点击视频查看安装过程。</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <video style="width:100%;" onclick="switchVide(this)" src="/assets/video/sts-svn-plug.mp4" poster="/assets/img/title/svn-server.jpg" controls="controls">
+                                        your browser does not support the video tag
+                                    </video>
+                                </div>
+                            </div>
+                            <p class="lead">也可以将插件压缩包<code>eclipse_svn_site-1.10.5.zip</code>解压缩，将解压后文件目录复制到<code>STS</code>安装目录<code>/dropins/</code>下即可。</p>
+                            <p class="lead">重启<code>STS</code>，进入<code>Eclipse</code>依次打开<code>Window <i class="glyphicon glyphicon-arrow-right"></i> Preferences<i class="glyphicon glyphicon-arrow-right"></i> Team <i class="glyphicon glyphicon-arrow-right"></i> SVN</code>，看到如下界面即说明<code>SVN</code>插件安装成功</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-29.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">切换<code>SVN资源库研究</code>透视图，建立和SVN服务器之间的关联。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-30.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">连接到服务器后，就可以和服务器进行文件交互了。</p>
+                            <h3 id="overview-doctype">将本地项目导入到服务器中</h3>
+                            <p class="lead">右键点击项目选择菜单<code>Team <i class="glyphicon glyphicon-arrow-right"></i> Share Project...</code>，选择仓库类型为<code>SVN</code>，</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-31.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">使用已有的仓库位置</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-32.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">指定模块名称</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-33.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击完成后，项目文件的图标会发生变化。表示当前文件可以准备要上传到服务器中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-34.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">右键项目选择菜单<code>Team <i class="glyphicon glyphicon-arrow-right"></i> 提交(C)...</code>，将项目源码文件提交到服务器中。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-35.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">提交成功后，项目的文件图标前增加了黄色的柱状图形，表示和服务器文件保持同步了。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-36.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">将服务器中源码导入到本地工作空间</h3>
+                            <p class="lead">切换<code>SVN资源库研究</code>透视图，在服务器中找到需要导入的项目。右键项目选择菜单<code>检出为(C)...</code>，选择检出方式。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-37.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">检出成功后，工作空间中就增加了相应的项目，此时，项目文件和服务器文件保持同步。</p>
+                            <h3 id="overview-doctype">本地源码提交到服务器</h3>
+                            <p class="lead">如果项目增加了新的源码或对现有代码进行修改，修改完成后，需要将修改或增加<code>commit</code>(提交)到服务器中。让项目所有成员共享最新代码。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-38.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">服务器最新代码更新到本地</h3>
+                            <p class="lead">每天上班时，开发前首先需要将服务器最新代码更新到本地项目环境中，保证是基于最新代码进行的开发，否则可能出现问题。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-39.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">服务器代码与本地代码发生冲突</h3>
+                            <p class="lead">如果服务器和本地环境中相同的代码都发生修改，那么就会产生冲突。本地提交代码会发生错误，更新代码会多出文件。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-40.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>如何解决文件冲突？</h4>
+                                <p>记录自己本地的修改内容，将本地文件替换（项目右键<code>Replace with</code>菜单）为服务器最新内容，然后将文件加锁，不让其他用户修改，最后修改提交就可以了。</p>
+                            </div>
+                            <h3 id="overview-doctype">查看文件的更新记录</h3>
+                            <p class="lead"><code>SVN</code>软件会将每一个文件的修改过程记录下来，当想查看时，可以右键点击文件选择菜单<code>Team <i class="glyphicon glyphicon-arrow-right"></i> 显示资源历史纪录</code>进行查看</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12" >
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-svn-42.jpg" alt="svn">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>如何将项目和服务器的关联去掉？</h4>
+                                <p>项目点击右键选择菜单<code>Team <i class="glyphicon glyphicon-arrow-right"></i> 断开连接（D）...</code>删除<code>SVN</code>元数据即可。</p>
+                                <div class="row">
+                                  <div class="col-xs-12 col-md-12" >
+                                    <a href="#" class="thumbnail">
+                                      <img src="/assets/img/li/sts-svn-41.jpg" alt="svn">
+                                    </a>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-3" role="complementary">
+                        <div class=" nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#work" class="list-group-item">工作原理</a>
+                                      <a href="#install" class="list-group-item">软件安装</a>
+                                      <a href="#create" class="list-group-item">创建SVN仓库</a>
+                                      <a href="#auth" class="list-group-item">授权访问</a>
+                                      <a href="#basic" class="list-group-item">客户端基本操作</a>
+                                      <a href="#merge" class="list-group-item">开发工具集成</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $("video").parent().css("cursor", "pointer");
+        $("a").each(function(){
+            var href = $(this).attr("href");
+            if ( href == "#" ) {
+                $(this).attr("href", "javascript:;");
+            }
+        });
+        function switchVide( video ) {
+            video.paused?video.play():video.pause();
+        }
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+        </script>
+    </body>
+</html>

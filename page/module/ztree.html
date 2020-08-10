@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>JQuery.zTree</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>JQuery zTree</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="http://www.treejs.cn/v3/main.php#_zTreeInfo" title="zTree官网" target="_blank">
+                        <i class="glyphicon glyphicon-globe"></i> zTree官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div id="" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">简介</h1>
+                            <p class="lead">在程序开发中，展示数据有很多种方式，可以采用表格，图表，树形结构等不同的方式，具体采用哪一种，取决于我们想要展示数据的哪一种特性。</p>
+                            <p class="lead">如果想要展示数据的先后顺序，那么就采用表格。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-ztree-01.jpg" alt="ztree">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果想要展示数据的对比关系，那么就采用图表。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-ztree-02.jpg" alt="ztree">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果想要展示数据的层次（上下级）关系，那么就采用树形结构。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-ztree-03.jpg" alt="ztree">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="str" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">树形结构</h1>
+                            <p class="lead">数据关系中，如果存在上下级（父子）的关系，那么在展示的时候可以采用树形的方式进行展示，这种结构，称之为树形结构。</p>
+                            <p class="lead">树形结构的数据，应该遵循从上至下，从父到子进行操作的原则。也就是说通过父节点数据操作子节点数据。</p>
+                            <p class="lead">一个基本的树形结构的数据，根节点数据只能有一个，但是分支节点，叶子节点可以存在多个</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-ztree-04.jpg" alt="ztree">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="comp" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">组件</h1>
+                            <p class="lead">在网页设计中，如果想要将数据以树形结构的方式展示在页面中，一般采用<code>&lt;ul&gt;</code><code>&lt;li&gt;</code>标签的嵌套使用方式实现。基本代码为：</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+    <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;</span> 父节点
+            <span class="nt">&lt;ul&gt;</span>
+                <span class="nt">&lt;li&gt;</span>子节点<span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+...
+</code></pre></figure>
+                            <p class="lead">如果所有的<code>HTML</code>代码都是我们来设计和开发，会比较麻烦，而且容易出现错误，所以，一般在开发中，我们都采用第三方树形组件实现。</p>
+                            <p class="lead">下面表格中的组件是项目开发中比较常用的树形结构插件：</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>组件</th>
+                                            <th>优点</th>
+                                            <th>缺点</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">JSTree</th>
+                                            <td>兼容多个浏览器</td>
+                                            <td>代码风格不是OOP</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">TreeView</th>
+                                            <td>基于Jquery的轻量性、可扩展性强的树控件</td>
+                                            <td>动态操作的功能较少。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">zTree</th>
+                                            <td>一个依靠 jQuery 实现的多功能 “树插件”, 优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点</td>
+                                            <td>右键菜单无法直接集成。代码封装比较完整，扩展功能不容易。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ExtJS TreePanel</th>
+                                            <td>ExtJS自身使用的树控件, 支持自由拖放, 有非常完善的API和开发文档</td>
+                                            <td>商业项目是需要购买license</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="ztree" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">zTree</h1>
+                            <h3 id="overview-doctype">引入组件</h3>
+                            <p class="lead">因为组件在页面中有特定的展示效果和样式，所以需要将组件的样式文件和脚本文件引入到页面中。</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"ztree/zTreeStyle.css"</span><span class="na">&gt;</span>
+    ...
+    <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">"ztree/jquery.ztree.all-3.5.min.js"</span><span class="na">&gt;</span><span class="na">&lt;/script&gt;</span>
+    ...
+...
+</code></pre></figure>
+                            <div class="bs-callout bs-callout-danger" id="callout-inputgroup-text-input-only">
+                                <h4>zTree组件是基于jQuery框架开发的，所以使用前，必须引入JQuery库</h4>
+                            </div>
+                            <h3 id="overview-doctype">渲染数据</h3>
+                            <p class="lead">环境准备好后，需要在页面中增加容器标签，用于容纳生成后的树形结构内容。</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"treeDemo"</span> <span class="na">class=</span><span class="s">"ztree"</span><span class="na">&gt;</span>
+...
+</code></pre></figure>
+                            <p class="lead">调用组件方法在页面中渲染数据</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+    var setting = {};
+    var jsonData = [
+        {"id":1,"name":"系统权限菜单","open":true,
+            "children":[
+                {"id":2,"name":"控制面板","open":true,"checked":false,
+                    "children":[]
+                }
+            ]
+        }
+    ];
+    $.fn.zTree.init($("#treeDemo"), <span style="color:#d44950;"><strong>setting, jsonData</strong></span>);
+...
+</code></pre></figure>
+                            <h3 id="overview-doctype">Setting属性含义</h3>
+                            <p class="lead"><code>Setting</code>对象表示组件渲染数据的配置信息，需要在渲染数据之前准备好，其中包含很多的属性（详细请<a target="_blank" href="/page/module/ztree/api/API_cn.html">点击</a>）</p>
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>属性</th>
+                                            <th>名称</th>
+                                            <th>例子</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">事件</th>
+                                            <td>callback</td>
+                                            <td>
+<pre>
+callback: {
+	onClick : function(event, treeId, json) {
+	}
+}
+</pre>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">异步加载</th>
+                                            <td>async</td>
+                                            <td>
+<pre>
+async: {
+	enable: true,
+	url:"xxxxx",
+	autoParam:["id", "name=n", "level=lv"]
+}
+</pre>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">复选框</th>
+                                            <td>check</td>
+                                            <td>
+<pre>
+check : {
+    enable : true 
+}
+</pre>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <h3 id="overview-doctype">jsonData含义</h3>
+                            <p class="lead"><code>jsonData</code>对象表示组件渲染的数据信息，需要在渲染数据之前准备好（也可以用异步的方式由组件查询），其中包含很多的属性（详细请<a target="_blank" href="/page/module/ztree/api/API_cn.html">点击</a>）</p>
+                            <pre>
+var node = {
+    name :  ‘xxxx’ , // 节点名称
+    open: true, // 父节点是否展开
+    icon : ‘xxx’,// 图标图片的 url 可以是相对路径也可以是绝对路径
+    checked:true,// 节点的 checkBox / radio 的 勾选状态
+    children:[{}, {}] //节点的子节点数据集合
+    level:1//记录节点的层级(不能由后台生成，是ztree组件自动生成的)
+}</pre>
+                            <h3 id="overview-doctype">基本操作</h3>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-4">
+                                        <col class="col-xs-8">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>操作</th>
+                                            <th>代码</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">读取当前树对象</th>
+                                            <td><pre>var treeObj = $.fn.zTree.getZTreeObj("treeDemo");</pre></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">刷新当前树对象的数据<br>（异步，树形结构数据必须异步加载）</th>
+                                            <td><pre>treeObj.reAsyncChildNodes(null, "refresh");</pre></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">查询节点</th>
+                                            <td>
+<pre>
+var nodes = treeObj.getSelectedNodes(); // 获取选择的节点
+var node  = treeObj.getNodeByParam("id", 1, null);// 根据参数获取节点
+var nodes = treeObj.getCheckedNodes(true); // 获取被选中的节点
+</pre></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">增加新节点</th>
+                                            <td>
+<pre>var newNodes = [{name:"newNode1"}, {name:"newNode2"}, {name:"newNode3"}];
+newNodes = treeObj.addNodes(node, newNodes);
+</pre></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">修改数据</th>
+                                            <td>
+<pre>
+var treeObj = $.fn.zTree.getZTreeObj("tree");
+var nodes = treeObj.getNodes();
+if (nodes.length>0) {
+	nodes[0].name = "test";
+	treeObj.updateNode(nodes[0]);
+}
+</pre></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">删除节点</th>
+                                            <td>
+<pre>
+treeObj.removeChildNodes(parentNode);
+treeObj.removeNode(currentNode);
+</pre></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#remark" class="list-group-item">简介</a>
+                                      <a href="#str" class="list-group-item">树形结构</a>
+                                      <a href="#comp" class="list-group-item">组件</a>
+                                      <a href="#ztree" class="list-group-item">zTree</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+                
+                $("img").parent().attr("href", "javascript:;");
+            });
+        });
+        </script>
+    </body>
+</html>

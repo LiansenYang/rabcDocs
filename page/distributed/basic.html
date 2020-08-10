@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>分布式环境集成</title>
+        <style>
+        body  {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        .tooltip {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        .highlight {
+            padding: 0;
+            margin-bottom: 14px;
+            background-color: #f7f7f9;
+            border: 0px solid #e1e1e8;
+            border-radius: 4px;
+        }
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>分布式环境集成</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                    <a class="btn btn-lg btn-primary" href="/page/framework/distributed.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 分布式架构 </a>
+                    
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="https://redis.io/" title="Nginx官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Nginx官网
+                      </a>
+                    </li>
+                    <li class="social-forum">
+                      <a class="" href="http://projects.spring.io/spring-boot/" title="Tomcat官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Tomcat官网
+                      </a>
+                    </li>
+                    <li class="social-forum">
+                      <a class="" href="http://projects.spring.io/spring-boot/" title="Memcached官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Memcached官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div id="name" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">术语</h1>
+                            <ol>
+                            <li><h3 id="overview-doctype">分布式</h3>
+                            <p class="lead">分布式有两种不同的体现方式：分布式系统，分布式用户。一般开发时分布式指的是系统分布式部署。</p>
+                            </li>
+                            <li>
+                            <h3 id="overview-doctype">集群</h3>
+                            <p class="lead">多个服务器构成了一个群组，以单一系统的模式加以管理，用以提高服务的可用性和可缩放性。。</p>
+                            </li>
+                            <li>
+                            <h3 id="overview-doctype">负载均衡 & 反向代理</h3>
+                            <ul>
+                            <li><p class="lead">负载： <code>web</code>系统中一般指系统的用户承受能力。</p></li>
+                            <li><p class="lead">负载均衡 ：用多个服务器分担用户的访问，使多个服务器的负载达到均衡。可以使用硬件或软件实现。</p></li>
+                            <li><p class="lead">反向代理 ： 不考虑具体提供的的某一台服务器，而是通过外置的代理服务器进行统一访问。</p></li>
+                            </ul>
+                            </li>
+                            <li>
+                            <h3 id="overview-doctype">Session共享</h3>
+                            <p class="lead">服务器是独立的，一般情况下，无法共享<code>JVM</code>数据，所以<code>Session</code>无法共享，必须采用第三方组件（<code>Memcached, Redis</code>）实现<code>Session</code>共享。</p>
+                            </li>
+                            <li>
+                            <h3 id="overview-doctype">动静资源分离</h3>
+                            <p class="lead">动态资源和静态资源都会向服务器发送请求，那么大量的静态资源请求会导致服务器效率变低，运行变慢，所以进行资源的动静分离。</p>
+                            </li>
+                            </ol>
+                        </div>
+                        <div id="soft" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">软件</h1>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-3">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>数量</th>
+                                            <th>作用</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Tomcat 7.0</th>
+                                            <td>N</td>
+                                            <td>服务器集群</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">nginx-1.9.2</th>
+                                            <td>1</td>
+                                            <td>负载均衡, 动静资源服务器</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Memcached</th>
+                                            <td>1</td>
+                                            <td>Session共享组件</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="merge" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">集成</h1>
+                            <ol>
+                            <li>
+                            <p class="lead">用户发送请求，不再直接发送给真实服务器，而是先发送到反向代理服务器，所以首先配置反向代理服务器<code>Nginx</code>，解压缩<code>nginx-1.9.2.zip</code>文件到<b>无中文，无空格</b>的目录中。</p></li>
+                            <li><p class="lead">解压缩<code>tomcat.zip</code>文件到<b>无中文，无空格</b>的目录中，修改其中的端口号（<code>8105, 8109, 8181</code>）。</p></li>
+                            <li><p class="lead">将解压后的<code>tomcat</code>，再复制一份，形成多个服务器。配置独立的端口号（<code>8205, 8209, 8282</code>）。</p></li>
+                            <li><p class="lead">修改<code>Nginx</code>服务器的核心配置文件：<code>conf/nginx.conf</code>，用于将反向代理服务器和多个<code>Tomcat</code>连接在一起，形成服务器集群。</p>
+                            <p class="lead">解除<code>L34</code>注释，增加对应端口号。配置多服务器集群</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+32	upstream localhost {
+33	    #ip_hash;
+34	    <span style="color:#c7254e">server 127.0.0.1:8181;</span>
+35	    <span style="color:#c7254e">server 127.0.0.1:8282;</span>
+36	}
+...
+</code></pre></figure>
+                            <p class="lead"><code>L48</code>行，监听服务端口，当用户访问此端口时，进行反向代理服务</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+47	server {
+48	    <span style="color:#c7254e">listen       80;</span>
+49	    server_name  localhost;
+50	    location / {
+...
+</code></pre></figure>
+                            <p class="lead">修改<code>L66, L70</code>行，设定静态资源访问路径</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+61        location ~* \.(eot|otf|ttf|woff|woff2|svg)$ {
+62            gzip_static on;
+63            expires max;
+64            add_header Cache-Control public;
+65            add_header Access-Control-Allow-Origin *;
+66            <span style="color:#c7254e">root e:/resources/bluepic;</span>
+67        }
+68		
+69        location ~ \.(zip|rar|js|css|png|gif|jpeg|jpg|bmp|mp4|mp3|ico|doc|docx|xls|ppt|xlsx|pptx|swf|xml|flv|html|pdf|properties)$ {  
+70            <span style="color:#c7254e">root e:/resources/bluepic;</span>
+71        }
+...
+</code></pre></figure></li>
+                                <li><p class="lead">安装<code>Memcached</code>缓存组件，用于实现服务器集群时的Session共享。解压缩<code>memcached.zip</code>文件，执行<code>DOS</code>命令进入到<code>memcached</code>解压缩后的目录，再执行<code>DOS</code>命令<code style="background-color:#000;color:#FFF;">memcached.exe -d install</code>进行安装，然后执行<code>DOS</code>命令<code style="background-color:#000;color:#FFF;">memcached.exe -d start</code>启动缓存服务。</p></li>
+                            </ol>
+                        </div>
+                        <div id="test" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">测试</h1>
+                            <ol>
+                            <li><p class="lead">分别启动<code>Nginx</code>服务器和<code>Tomcat</code>服务器（N）。确认是否可以正常启动</p></li>
+                            <li><p class="lead">正常启动后，分别在两个<code>Tomcat</code>服务器的<code>webapps</code>目录中添加<code>ROOT</code>文件夹并增加<code>index.jsp</code>页面</p>
+                            <p class="lead">在第一个<code>Tomcat</code>服务器的<code>index.jsp</code>增加内容<pre>Tomcat 1 INDEX JSP!</pre></p>
+                            <p class="lead">在第二个<code>Tomcat</code>服务器的<code>index.jsp</code>增加内容<pre>Tomcat 2 INDEX JSP!</pre></p>
+                            <p class="lead">启动所有服务器，浏览器访问<code>80</code>端口，刷新几次，观察页面内容变化，如果页面内容依次变化，那么说明<strong>反向代理</strong>和<strong>服务器集群</strong>配置成功。</p></li>
+                            <li>
+                                <p class="lead">在第二个<code>Tomcat</code>服务器中增加文件<code>data.jsp</code>，增加内容<pre>&lt;% session.setAttribute("username", "zhangsan");&gt;</pre></p>
+                                <p class="lead">修改两个<code>Tomcat</code>服务器的<code>index.jsp</code>，尾部增加<pre> ${username} </pre></p>
+                                <p class="lead">重新启动<code>Tomcat</code>服务器，浏览器访问<code>80</code>端口，刷新几次，观察页面内容变化，如果两个服务器的页面均出现<code>zhangsan</code>，那么说明<strong>Session共享</strong>配置成功。</p>
+                            </li>
+                            <li>
+                                <p class="lead">在两个<code>Tomcat</code>服务器的<code>index.jsp</code>文件中增加内容<pre>&lt;img src="pic.jpg"&gt;</pre></p>
+                                <p class="lead">重新启动<code>Tomcat</code>服务器，浏览器访问<code>80</code>端口，刷新几次，观察页面内容变化，如果两个服务器的页面均出现图片，那么说明<strong>动静资源分离</strong>配置成功。</p>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#remark" class="list-group-item">术语</a>
+                                      <a href="#soft" class="list-group-item">软件</a>
+                                      <a href="#merge" class="list-group-item">集成</a>
+                                      <a href="#test" class="list-group-item">测试</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+        </script>
+    </body>
+</html>

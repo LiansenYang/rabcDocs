@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>Spring Cloud 微服务</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+
+        .highlight {
+            padding: 0;
+            margin-bottom: 14px;
+            background-color: #f7f7f9;
+            border: 0px solid #e1e1e8;
+            border-radius: 4px;
+        }
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>Spring Cloud 微服务</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                    <a class="btn btn-lg btn-primary" href="/page/framework/distributed.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 分布式架构 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="http://projects.spring.io/spring-cloud/" title="Spring Boot官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Spring Cloud官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概念</h1>
+                            <p class="lead"><code>Spring Cloud</code>是一系列框架的有序集合。它利用<code>Spring Boot</code>的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用<code>Spring Boot</code>的开发风格做到一键启动和部署。<code>Spring</code>并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过<code>Spring Boot</code>风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+                            <p class="lead">“微服务架构”在这几年非常的火热，以至于关于微服务架构相关的开源产品被反复的提及（比如：<code>netflix</code>、<code>dubbo</code>），<code>Spring Cloud</code>也因<code>Spring</code>社区的强大知名度和影响力也被广大架构师与开发者备受关注。</p>
+                            <p class="lead">那么什么是“微服务架构”呢？简单的说，微服务架构就是将一个完整的应用从数据存储开始垂直拆分成多个不同的服务，每个服务都能独立部署、独立维护、独立扩展，服务与服务间通过诸如<code>RESTful API</code>的方式互相调用。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">为什么使用Spring Cloud？</h1>
+                            <p class="lead"><code>Spring Cloud</code>对于中小型互联网公司来说是一种福音，因为这类公司往往没有实力或者没有足够的资金投入去开发自己的分布式系统基础设施，使用<code>Spring Cloud</code>一站式解决方案能在从容应对业务发展的同时大大减少开发成本。同时，随着近几年微服务架构和<code>Docker</code>容器概念的火爆，也会让<code>Spring Cloud</code>在未来越来越“云”化的软件开发风格中立有一席之地，尤其是在目前五花八门的分布式解决方案中提供了标准化的、全站式的技术方案，意义可能会堪比当前<code>Servlet</code>规范的诞生，有效推进服务端软件系统技术水平的进步。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">应用Spring Cloud</h1>
+                            <p class="lead"><code>Spring Cloud Netflix</code>项目是<code>Spring Cloud</code>的子项目之一，主要内容是对<code>Netflix</code>公司一系列开源产品的包装，它为<code>Spring Boot</code>应用提供了自配置的<code>Netflix OSS</code>整合。通过一些简单的注解，开发者就可以快速的在应用中配置一下常用模块并构建庞大的分布式系统。它主要提供的模块包括：服务发现（<code>Eureka</code>），断路器（<code>Hystrix</code>），智能路由（<code>Zuul</code>），客户端负载均衡（<code>Ribbon</code>）等。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">Spring Cloud Eureka</h1>
+                            <p class="lead"><code>Spring Cloud</code>可以将服务模块从系统中剥离出来，形成独立的业务组件。通过服务发现注册功能，将业务服务组件发布到服务注册中心，让其他应用进行访问。</p>
+                            <p class="lead"><code>Spring Cloud</code>为服务治理做了一层抽象接口，所以在<code>Spring Cloud</code>应用中可以支持多种不同的服务治理框架，比如：<code>Netflix Eureka</code>、<code>Consul</code>、<code>Zookeeper</code>。在<code>Spring Cloud</code>服务治理抽象层的作用下，我们可以无缝地切换服务治理实现，并且不影响任何其他的服务注册、服务发现、服务调用等逻辑。</p>
+                            <h3 id="reg"><a>创建服务注册中心</a></h3>
+                            <p class="lead">本章学习中，我们使用<code>Spring Cloud Eureka</code>来实现服务治理，<code>Spring Cloud Eureka</code>是<code>Spring Cloud Netflix</code>项目下的服务治理模块。</p>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具中，右键点击项目视图空白处，选择菜单<code>New <i class="glyphicon glyphicon-arrow-right"></i> Spring Starter Project</code>后，填写项目信息。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-01.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Next</code>按钮后，选择依赖的类库，<code>Spring Boot Version</code>请选择最新版</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-02.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Finish</code>按钮即可</p>
+                            <p class="lead"><b>项目创建完成后，自动创建<code>RegistryCenterApplication</code>类，在类前增加注解<code>@EnableEurekaServer</code></b></p>
+                            <p class="lead">在<code>application.properties</code>文件中，增加配置信息</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">
+...
+spring.application.name=eureka-server
+server.port=1001
+eureka.instance.hostname=127.0.0.1
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+eureka.client.serviceUrl.defaultZone=http://localhost:${server.port}/eureka/
+...
+</code></pre></figure>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具的<code>Boot Dashboard</code>视图中，可以看见刚刚创建的项目</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-03.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">选择项目，点击视图中左上角的启动按钮<img src="/assets/img/li/sts-springcloud-04.jpg">后。双击项目查看效果</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-05.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果<code>eureka</code>服务页面正常显示，那么注册中心创建成功。</p>
+                            <h3 id="add"><a>增加会员服务</a></h3>
+                            <p class="lead">创建会员服务，在注册中心中进行注册。</p>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具中，右键点击项目视图空白处，选择菜单<code>New <i class="glyphicon glyphicon-arrow-right"></i> Spring Starter Project</code>后，填写项目信息。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-06.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Next</code>按钮后，选择依赖的类库，<code>Spring Boot Version</code>请选择最新版</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-07.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Finish</code>按钮即可</p>
+                            <p class="lead"><b>项目创建完成后，自动创建<code>MemberServiceServerApplication</code>类，在类前增加注解<code>@EnableDiscoveryClient</code></b></p>
+                            <p class="lead">在<code>application.properties</code>文件中，增加配置信息</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">
+...
+spring.application.name=eureka-member-service
+server.port=2001
+eureka.client.serviceUrl.defaultZone=http://127.0.0.1:1001/eureka/
+...
+</code></pre></figure>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具的<code>Boot Dashboard</code>视图中，可以看见刚刚创建的项目</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-08.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">选择项目，点击视图中左上角的启动按钮<img src="/assets/img/li/sts-springcloud-04.jpg">后。双击<code>RegistryCenter</code>项目查看效果</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-09.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">如果<code>eureka</code>服务页面增加了<code>eureka-member-service</code>服务，那么会员服务注册成功。</p>
+                            <p class="lead">在<code>MemberServiceServer</code>项目中，添加业务类<code>DispatcherController</code></p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.atguigu.crowdfunding.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DispatcherController {
+
+	@RequestMapping("/test")
+	public String test() {
+		return "member service !";
+	}
+}
+
+</code></pre></figure>
+                                <p class="lead">重启项目后，访问<code>http://127.0.0.1:2001/test</code>。页面中显示<code>member service !</code>表示成功。</p>
+                            <h3 id="access"><a>访问会员服务</a></h3>
+                            <p class="lead">当在注册中心注册了会员服务后，其他的任何应用都可以通过<code>feign</code>方式从注册中心中获取会员服务。</p>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具中，右键点击项目视图空白处，选择菜单<code>New <i class="glyphicon glyphicon-arrow-right"></i> Spring Starter Project</code>后，填写项目信息。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-10.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Next</code>按钮后，选择依赖的类库，<code>Spring Boot Version</code>请选择最新版</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-11.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">点击<code>Finish</code>按钮即可</p>
+                            <p class="lead"><b>项目创建完成后，自动创建<code>MemberServiceClientApplication</code>类，在类前增加注解<code>@EnableDiscoveryClient, @EnableFeignClients</code></b></p>
+                            <p class="lead">在<code>application.properties</code>文件中，增加配置信息</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">
+...
+spring.application.name=eureka-member-client
+server.port=80
+
+eureka.client.serviceUrl.defaultZone=http://localhost:1001/eureka/
+...
+</code></pre></figure>
+                            <p class="lead">在<code>Spring Tool Suite</code>工具的<code>Boot Dashboard</code>视图中，可以看见刚刚创建的项目</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-12.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <code class="lead"></code>
+                            <p class="lead">在<code>MemberServiceClient</code>项目中，添加服务访问类<code>MemberClient</code></p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.atguigu.crowdfunding.client;
+
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@FeignClient("eureka-member-service")
+public interface MemberClient {
+    @GetMapping("/test")
+    String test();
+}
+</code></pre></figure>
+                            <p class="lead"><strong><code>@FeignClient("eureka-member-service")</code>中的字符串内容应该和会员服务在注册中心注册的名称相同<code>eureka-member-service</code></strong></p>
+                            <p class="lead">在<code>MemberServiceClient</code>项目中，添加业务类<code>DispatcherController</code>调用会员服务<code>MemberClient</code>。</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.atguigu.crowdfunding.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.atguigu.crowdfunding.client.MemberClient;
+
+@RestController
+public class DispatcherController {
+
+	
+	@Autowired
+	private MemberClient memberClient;
+	
+	@RequestMapping("/test")
+	public String test() {
+		return memberClient.test();
+	}
+}
+</code></pre></figure>
+                            <p class="lead">选择项目，点击视图中左上角的启动按钮<img src="/assets/img/li/sts-springcloud-04.jpg">后。</p>
+                            <p class="lead">访问<code>http://127.0.0.1/test</code>。页面中显示<code>member service !</code>表示客户端访问会员服务成功。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-13.jpg" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="Ribbon" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">Spring Cloud Ribbon</h1>
+                            <p class="lead">在服务发现<code>Eureka</code>中。我们使用了<code>Feign</code>方式读取<code>Service</code>应用中的数据,那如果多个<code>Service</code>应用提供相同的服务，这时候<code>feign</code>服务客户端访问哪一个<code>Service</code>应用就不确定了，所以此时需要一个类似于<code>Nginx</code>负载均衡器一样的软件或服务来进行调度。</p>
+                            <p class="lead"><code>Ribbon</code>就是这样的一种技术，不过和<code>Nginx</code>区别在于，<code>Ribbon</code>是在<code>feign</code>客户端获取<code>Eureka</code>注册服务列表后进行的负载均衡（软负载均衡）。</p>
+                            <p class="lead"><code>feign</code>服务中已经内置了<code>Ribbon</code>, 所以不需要额外的操作。</p>
+                        </div>
+                        <div id="Hystrix" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">Spring Cloud Hystrix</h1>
+                            <p class="lead">在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（<code>RPC</code>），在<code>Spring Cloud</code>可以用<code>Feign</code>来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证<code>100%</code>可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，<code>Servlet</code>容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4><code>Netflix has created a library called Hystrix that implements the circuit breaker pattern. In a microservice architecture it is common to have multiple layers of service calls.</code></h4>
+                            </div>
+                            <p class="lead">在微服务架构中，一个请求需要调用多个服务是非常常见的</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-14.png" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（<code>Hystric</code> 是5秒20次） 断路器将会被打开</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a class="thumbnail">
+                                  <img src="/assets/img/li/sts-springcloud-15.png" alt="配置spring boot">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">断路打开后，可用避免连锁故障。</p>
+                            <p class="lead">代码实现时，首先需要在<code>pom.xml</code>文件中增加依赖关系</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
+&lt;/dependency&gt;
+...
+</code></pre></figure>
+                            <p class="lead"><b>在程序的启动类中增加<code>@EnableHystrix</code>注解开启<code>Hystrix</code>。</b></p>
+                            <p class="lead">在调用<code>feign</code>服务的<code>Controller</code>方法前增加注解<code>@HystrixCommand(fallbackMethod="服务失败时调用的方法名")</code></p>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>服务调用失败时回调的方法声明应该和<code>feign</code>服务调用的方法声明保持一致</h4>
+                            </div>
+                            <p class="lead">正确启动应用后，再关闭服务，测试断路器是否工作正常。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#reg" class="list-group-item">Eureka 创建服务注册中心</a>
+                                      <a href="#add" class="list-group-item">Eureka 增加会员服务</a>
+                                      <a href="#access" class="list-group-item">Eureka 访问会员服务</a>
+                                      <a href="#Ribbon" class="list-group-item">Ribbon 客户端负载均衡</a>
+                                      <a href="#Hystrix" class="list-group-item">Hystrix 熔断（断路）器</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <title>PowerDesigner</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        video {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>@Sybase PowerDesigner</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                   <li class="social-forum">
+                      <a class="" href="http://powerdesigner.de/" title="Rational Rose官网" target="_blank">
+                        <i class="glyphicon glyphicon-globe"></i> PowerDesigner官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概念</h1>
+                            <p class="lead"><code>PowerDesigner</code>最初由<code>Xiao-Yun Wang</code>（王晓昀）在<code>SDP Technologies</code>公司开发完成。<code>PowerDesigner</code>是<code>Sybase</code>的企业建模和设计解决方案，采用模型驱动方法，将业务与IT结合起来，可帮助部署有效的企业体系架构，并为研发生命周期管理提供强大的分析与设计技术。<code>PowerDesigner</code>独具匠心地将多种标准数据建模技术（<code>UML</code>、业务流程建模以及市场领先的数据建模）集成一体，并与<code> .NET、WorkSpace、PowerBuilder、Java™、Eclipse </code> 等主流开发平台集成起来，从而为传统的软件开发周期管理提供业务分析和规范的数据库设计解决方案。此外，它支持60多种关系数据库管理系统（<code>RDBMS</code>）/版本。<code>PowerDesigner</code>运行在<code>Microsoft Windows</code>平台上，并提供了<code>Eclipse</code>插件。</p>
+                            <p class="lead"><code>PowerDesigner</code>是<code>Sybase</code>公司的<code>CASE</code>工具集，使用它可以方便地对管理信息系统进行分析设计，他几乎包括了数据库模型设计的全过程。利用<code>PowerDesigner</code>可以制作数据流程图、概念数据模型、物理数据模型，还可以为数据仓库制作结构模型，也能对团队设计模型进行控制。他可以与许多流行的软件开发工具，例如<code>PowerBuilder、Delphi、VB</code>等相配合使开发时间缩短和使系统设计更优化。</p>
+                            <p class="lead"><code>PowerDesigner</code>是能进行数据库设计的强大的软件，是一款开发人员常用的<strong>数据库建模工具</strong>。使用它可以分别从概念数据模型(<code>Conceptual Data Model</code>)和物理数据模型(<code>Physical Data Model</code>)两个层次对数据库进行设计。在这里，概念数据模型描述的是独立于数据库管理系统(<code>DBMS</code>)的实体定义和实体关系定义；物理数据模型是在概念数据模型的基础上针对目标数据库管理系统的具体化。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">模型转换</h1>
+                            <h3 id="overview-doctype">概念数据模型</h3>
+                            <p class="lead">概念数据模型是最终用户对数据存储的看法，反映了用户的综合性信息需求。</p>
+                            <h3 id="overview-doctype">对象数据模型</h3>
+                            <p class="lead">一个软件系统的逻辑的设计视图的类结构。 一个<code>OOM</code>本质上是软件系统的一个静态的概念模型。</p>
+                            <h3 id="overview-doctype">物理数据模型</h3>
+                            <p class="lead">产生数据库中保存信息的储存结构，保证数据在数据库中的完整性和一致性。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">使用</h1>
+                            <p class="lead">下面视频为<code>PowerDesigner</code>工具的简单使用和说明，点击可播放。</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <video style="width:100%;" onclick="switchVide(this)" src="/assets/video/pd.mp4" poster="/assets/img/title/pd.jpg" controls="controls">
+                                        your browser does not support the video tag
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">ER图(Entity Relationship)建模工具</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a class="list-group-item">Visio( Microsoft )</a>
+                                      <a href="rose.html" class="list-group-item">Rational Rose (Data Modal)</a>
+                                      <a href="http://powerdesigner.de/" target="_blank" class="list-group-item">Sybase PowerDesigner</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $("video").parent().css("cursor", "pointer");
+        function switchVide( video ) {
+            video.paused?video.play():video.pause();
+        }
+        </script>
+    </body>
+</html>

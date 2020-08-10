@@ -1,0 +1,30 @@
+    {
+        "id"   : "project-optimised",
+        "icon" : "glyphicon glyphicon-star-empty",
+        "type" : "",
+        "name" : "系统性能优化",
+        "remark" : "通过编码或参数设置调整系统性能。",
+        "courses" : [
+            {
+                "name" : "JUC（线程高级）",
+                "remark" : "项目设计中常用的权限设计模型，用于解决项目中关于权限相关的问题。",
+                "tags" : ["优化", "线程"],
+                "icon" : "./assets/img/juc.jpg",
+                "url" : "/page/optimised/juc.html"
+            },
+            {
+                "name" : "JVM",
+                "remark" : "jQuery插件，用于将数据以树形的方式展现出来。",
+                "tags" : ["优化"],
+                "icon" : "./assets/img/jvm.jpg",
+                "url" : "/page/optimised/jvm.html"
+            },
+            {
+                "name" : "Apache Tomcat",
+                "remark" : "免费的开放源代码的Web 应用服务器，属于轻量级应用服务器。",
+                "tags" : ["服务器", "优化"],
+                "icon" : "./assets/img/tomcat.jpg",
+                "url" : "/page/optimised/tomcat.html"
+            }
+        ]
+    }

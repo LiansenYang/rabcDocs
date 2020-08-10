@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>FreeMarker</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        
+        video {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>FreeMarker</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="http://freemarker.org/" title="FreeMarker官网" target="_blank">
+                        <i class="glyphicon glyphicon-globe"></i> FreeMarker官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概念</h1>
+                            <p class="lead"><code>FreeMarker</code>是一款模板引擎： 即一种基于模板和要改变的数据，    并用来生成输出文本（<code>HTML</code>网页、电子邮件、配置文件、源代码等）的通用工具。    它不是面向最终用户的，而是一个<code>Java</code>类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
+                            <p class="lead"><code>FreeMarker</code>是免费的，基于<code>Apache</code>许可证<code>2.0</code>版本发布。其模板编写为<code>FreeMarker Template Language（FTL）</code>，属于简单、专用的语言。需要准备数据在真实编程语言中来显示，比如数据库查询和业务运算，    之后模板显示已经准备好的数据。在模板中，主要用于如何展现数据，    而在模板之外注意于要展示什么数据。</p>
+                        </div>
+                        <div id="work" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">工作原理</h1>
+                            <p class="lead">所有的模板视图技术的工作原理基本类似，也就意味着<code>FreeMarker</code>和<code>JSP</code>基本差不多。</p>
+                            <p class="lead">模板文件和数据模型是模板视图技术用来生成HTML页面所必须的组成部分。</p>
+                            <p class="lead"><strong>数据模型（<code>Java</code>） +  模板文件（<code>.ftl .jsp</code>文件）= 输出（<code>HTML</code>,<code>XML</code>,源码文件）</strong></p>
+                            <p class="lead"><code>JSP</code>在<code>Web</code>系统中弥补了<code>servlet</code>生成<code>HTML</code>页面的不足，但只能应用于<code>WEB</code>系统，生成HTML页面。而<code>FreeMarker</code>不仅仅应用于<code>Web</code>系统，也可以应用于<code>JAVA</code>系统，还能生成<code>JAVA</code>, <code>XML</code>等文件，所以应用面更广。</p>
+                            <p class="lead">使用时，需要在项目<code>pom.xml</code>文件中增加依赖关系</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.freemarker<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>freemarker<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.3.19<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    ...
+<span class="nt">&lt;/dependencies&gt;</span></code></pre></figure>
+                            <p class="lead">如果应用在<code>SpringMVC</code>框架中，还需要增加相应的视图解析器。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">&lt;bean id="freemarkerConfig"  
+    class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"&gt;  
+    &lt;!-- &lt;property name="templateLoaderPath" value="/WEB-INF/ftl/" /&gt; --&gt;
+    &lt;property name="templateLoaderPaths"&gt;
+        &lt;list&gt;
+            &lt;value&gt;/WEB-INF/ftl/&lt;/value&gt;
+            &lt;value&gt;classpath:/ftl/&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name="freemarkerSettings"&gt;  
+        &lt;props&gt;  
+            &lt;prop key="defaultEncoding"&gt;UTF-8&lt;/prop&gt;
+            &lt;prop key="template_update_delay"&gt;0&lt;/prop&gt;  
+            &lt;prop key="default_encoding"&gt;UTF-8&lt;/prop&gt;  
+            &lt;prop key="number_format"&gt;0.##########&lt;/prop&gt;  
+            &lt;prop key="datetime_format"&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;  
+            &lt;prop key="classic_compatible"&gt;true&lt;/prop&gt;  
+            &lt;prop key="template_exception_handler"&gt;ignore&lt;/prop&gt;  
+        &lt;/props&gt;  
+    &lt;/property&gt;  
+&lt;/bean&gt;
+    
+&lt;bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+    p:prefix="/" p:suffix=".ftl"&gt;
+    &lt;property name="cache" value="false" /&gt;
+    &lt;property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" /&gt;
+    &lt;property name="contentType" value="text/html;charset=UTF-8"&gt;&lt;/property&gt;
+    &lt;property name="exposeRequestAttributes" value="true" /&gt;
+    &lt;property name="exposeSessionAttributes" value="true" /&gt;
+    &lt;property name="exposeSpringMacroHelpers" value="true" /&gt;
+    &lt;property name="requestContextAttribute" value="base"&gt;&lt;/property&gt;
+    &lt;property name="order" value="0"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre></figure>
+                        </div>
+                        <div id="basic" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">基本语法</h1>
+                            <p class="lead"><code>${...}</code>：<code>FreeMarker</code>将会输出真实的值来替换大括号内的表达式，这样的表达式被称为<code>interpolation</code>（插值）。</p>
+                            <p class="lead">注释：注释和<code>HTML</code>的注释也很相似，但是它们使用<code>&lt;#-- and --&gt;</code>来标识。不像<code>HTML</code>注释那样，<code>FTL</code>注释不会出现在输出中（不出现在访问者的页面中），因为<code>FreeMarker</code>会跳过它们。</p>
+                            <p class="lead"><code>FTL</code>标签（<code>FreeMarker</code>模板的语言标签）：<code>FTL</code>标签和<code>HTML</code>标签有一些相似之处，但是它们是<code>FreeMarker</code>的指令，是不会在输出中打印的。这些标签的名字以<code>#</code>开头。（用户自定义的FTL标签则需要使用<code>@</code>来代替<code>#</code>）</p>
+                            <p class="lead">一个简单的<code>FreeMarker</code>例子:</p>
+                            <p class="lead"><code>bean.ftl</code>代码</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package ${packageName}.bean;
+
+public class ${className} {
+
+}
+</code></pre></figure>
+                            <p class="lead"><code>JAVA</code>代码</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">...
+    // 创建Freemarker对象的配置对象
+    Configuration cfg = new Configuration();
+    // 设定默认的位置（路径）
+    cfg.setDirectoryForTemplateLoading(new File("D:\\ftl"));
+    cfg.setDefaultEncoding("UTF-8");
+    cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+
+    // 数据
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    
+    String className = "User";
+    
+    paramMap.put("packageName", "com.atguigu.crowdfunding");
+    paramMap.put("className", className);
+    
+
+    Template t = cfg.getTemplate("bean.ftl");
+    // 组合生成
+    Writer out = new OutputStreamWriter(new FileOutputStream(new File("D:\\User.java")), "UTF-8");
+    // 执行
+    t.process(paramMap, out);
+...
+</code></pre></figure>
+                        </div>
+                        <div id="tag" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">常用标签 & 语法</h1>
+                            <h3 id="overview-doctype">条件</h3>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">&lt;#if condition&gt;
+    ...
+&lt;#elseif condition2&gt;
+    ...
+&lt;#elseif condition3&gt;
+    ...
+&lt;#else&gt;
+    ...
+&lt;/#if&gt;</code></pre></figure>
+                            <h3 id="overview-doctype">循环</h3>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">&lt;#list users as user&gt;
+    ${user.name}
+&lt;/#list&gt;
+</code></pre></figure>
+                            <h3 id="overview-doctype">包含</h3>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">&lt;#include "xxxx.ftl"&gt;
+</code></pre></figure>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>目录&文件</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">${book.name?if_exists }</th>
+                                            <td>用于判断如果存在,就输出这个值</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">${book.name?default(‘xxx’)}</th>
+                                            <td>默认值xxx</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">${book.name!"xxx"}</th>
+                                            <td>默认值xxx</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">${book.date?string('yyyy-MM-dd')}</th>
+                                            <td>日期格式</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">s?html</th>
+                                            <td>对字符串进行HTML编码</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">s?cap_first</th>
+                                            <td>使字符串第一个字母大写</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">s?lower_case</th>
+                                            <td>将字符串转换成小写</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">s?trim</th>
+                                            <td>去掉字符串前后的空白字符</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">s?size</th>
+                                            <td>获得序列中元素的数目</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="plugin" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">IDE 插件</h1>
+                            <p class="lead"><code>STS(Eclipse)</code>安装<code>Freemarker</code>插件，请点击下面视频，按照步骤进行安装</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <video style="width:100%;" onclick="switchVide(this)" src="/assets/video/freemarker.mp4" poster="/assets/img/title/freemarker.jpg" controls="controls">
+                                        your browser does not support the video tag
+                                    </video>
+                                </div>
+                            </div>
+                            <p class="lead">安装步骤会因为网络的原因比较慢，请耐心等候。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#work" class="list-group-item">工作原理</a>
+                                      <a href="#basic" class="list-group-item">基本语法</a>
+                                      <a href="#tag" class="list-group-item">常用标签 & 语法</a>
+                                      <a href="#plugin" class="list-group-item">IDE 插件</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+        function switchVide( video ) {
+            video.paused?video.play():video.pause();
+        }
+        </script>
+    </body>
+</html>

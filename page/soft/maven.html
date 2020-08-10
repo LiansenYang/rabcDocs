@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>Apache Maven</title>
+        <style>
+        body  {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        .tooltip {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        .highlight {
+            padding: 0;
+            margin-bottom: 14px;
+            background-color: #f7f7f9;
+            border: 0px solid #e1e1e8;
+            border-radius: 4px;
+        }
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+.modal {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.ellipsis {
+    max-width:745px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis
+}
+.modal.fade .modal-dialog {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0)
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(30,30,30,.2);
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    outline: 0;
+    
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000
+}
+
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity = 0)
+}
+
+.modal-backdrop.in {
+    opacity: .3;
+    filter: alpha(opacity = 30)
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    min-height: 16.42857143px
+}
+
+.modal-header .close {
+    margin-top: -2px
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5
+}
+
+.modal-footer .btn+.btn {
+    margin-left: 5px;
+    margin-bottom: 0
+}
+
+.modal-footer .btn-group .btn+.btn {
+    margin-left: -1px
+}
+
+.modal-footer .btn-block+.btn-block {
+    margin-left: 0
+}
+
+.modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll
+}
+
+@media ( min-width :768px) {
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto
+    }
+    .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
+    }
+    .modal-sm {
+        width: 300px
+    }
+}
+
+@media ( min-width :992px) {
+    .modal-lg {
+        width: 900px
+    }
+}
+
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>@Apache Maven</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="http://maven.apache.org/" title="Maven官网" target="_blank">
+                        <i class="glyphicon glyphicon-globe"></i> Maven官网
+                      </a>
+                    </li>
+                    <li class="social-forum">
+                      <a class="" href="javascript:;" onclick="showPDF()" title="Maven权威指南中文版" >
+                        <i class="glyphicon glyphicon-book"></i> Maven权威指南中文版
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概述</h1>
+                            <p class="lead"><code>Apache Maven</code>( <code>[`meivn]</code> )是一个软件项目管理和依赖管理工具。基于项目对象模型（<code>POM</code>）的概念，<code>Maven</code>可以通过资源仓库管理项目的构建，报告和文件。</p>
+                            <p class="lead"><code>Maven</code>对于项目目录结构、测试用例命名方式等内容都有既定的规则，只要遵循了这些成熟的规则，用户在项目间切换的时候就免去了额外的学习成本，可以说是约定优于配置（<code>Convention Over Configuration</code>）。</p>
+                            <p class="lead">作为<code>Apache</code>组织提供的一个颇为成功的开源项目，<code>Maven</code>主要服务于基于<code>Java</code>平台的项目构建，依赖管理和项目信息管理。无论是小型的开源类库项目，还是大型的企业级应用；无论是传统的<label data-toggle="tooltip" data-placement="top" title="软件开发生命周期模型">瀑布式开发</label>，还是流行的<label data-toggle="tooltip" data-placement="top" title="软件开发生命周期模型">敏捷模式</label>，<code>Maven</code>都能大显身手。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">软件</h1>
+                            <p class="lead"><a href="http://maven.apache.org/" target="_blank">Apache Maven</a>官网上最新下载版本为<code>Apache Maven 3.5.0</code></p>
+                            <p class="lead">项目中提供的版本为<code>Apache Maven 3.2.2</code></p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">安装</h1>
+                            <p class="lead">软件下载后为<code>zip</code>压缩包（<code>windows</code>环境），即为免安装版本，所以解压缩后放置在路径中<label class="label label-danger">无中文，无空格</label>的目录中即可</p>
+                        </div>
+                        <div id="env" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">环境</h1>
+                            <p class="lead"><code>Maven</code>程序运行时要求配置<code>JAVA_HOME</code>环境变量</p>
+                            <p >检查方式，在<code>CMD</code>命令行中输入如下命令</p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">C:\Users\18801>echo %JAVA_HOME%
+D:\DevInstall\JDK
+</pre>                      </figure>
+                            <p class="lead">为了能够在<code>DOS</code>窗口的任意目录下运行<code>Maven</code>软件命令，需要将<code>Maven</code>软件解压缩后的<code>bin</code>目录配置到<code>path</code><label >环境变量</label>中。</p>
+                            <p >输入<code>mvn –v</code>命令能够得到当前<code>Maven</code>实例的版本信息</p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">C:\Users\18801>mvn -v
+Apache Maven 3.2.2 (45f7c06d68e745d05611f7fd14efb6594181933e; 2014-06-17T21:51:42+08:00)
+Maven home: D:\DevInstall\apache-maven-3.2.2\bin\..
+Java version: 1.7.0_07, vendor: Oracle Corporation
+Java home: D:\DevInstall\JDK\jre
+Default locale: zh_CN, platform encoding: GBK
+OS name: "windows 7", version: "6.1", arch: "x86", family: "windows"
+</pre>                      </figure>
+                            <p class="lead"><code>Maven</code>软件会在<code>Windows</code>系统中创建资源仓库，仓库中存放着用于对项目进行管理和构建的文件。默认情况下仓库会创建在C盘用户目录<code>~\.m2\repository</code>中。使用时，由于系统权限等问题可能会导致访问出现问题，所以需要更改仓库的位置</p>
+                            <p >打开<code>Maven</code>解压目录<code>\conf\settings.xml</code>文件</p>
+                            <p >在根节点下增加<code>&lt;localRepository&gt;</code><label data-toggle="tooltip" data-placement="top" title="本地仓库路径">本地仓库路径</label><code>&lt;/localRepository&gt;</code></p>
+                            <div class="bs-callout bs-callout-info" id="callout-glyphicons-empty-only">
+                                <h4>将老师提供的本地仓库压缩包（<code>maven.zip</code>）解压缩到<b style="color:#c7254e">无中文，无空格</b>的路径中，拷贝当前解压缩后的路径到<code>Maven</code>软件的<code>conf/settings.xml</code>文件中的<code>&lt;localRepository&gt;</code>标签中即可， 如：</h4>
+                                <p><code>&lt;localRepository&gt;</code>D:\KnowledgeHierarchy\repertory\maven<code>&lt;/localRepository&gt;</code></p>
+                            </div>
+                        </div>
+                        <div id="build" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">开发工具集成</h1>
+                            <p class="lead">主流开发工具（<code>IDE</code>）都默认提供<code>Maven</code>软件的集成，所以只需要在开发工具中配置后使用即可，本教程以<code>STS</code>工具为例</p>
+                            <p class="lead">选择菜单<code>Window <i class="glyphicon glyphicon-arrow-right"></i> Preferences <i class="glyphicon glyphicon-arrow-right"></i> Maven <i class="glyphicon glyphicon-arrow-right"></i> Installations <i class="glyphicon glyphicon-arrow-right"></i> Add</code>指定<code>Maven</code>的安装目录</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-1.jpg" alt="配置maven">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4><b>切换工作空间后需要重新配置</b></h4>
+                            </div>
+                            <p class="lead"><label class="label label-danger"></label></p>
+                        </div>
+                        <div id="first" class="bs-docs-section">
+                            <h1 class="page-header">创建第一个Maven项目</h1>
+                            <p class="lead">在<code>JAVA</code>项目视图中右键选择菜单<code>New <i class="glyphicon glyphicon-arrow-right"></i> Maven Project <i class="glyphicon glyphicon-arrow-right"></i></code> 勾选<code>Create a simple project</code>复选框后点击<code>Next</code>按钮</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-2.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">填写必要的信息（<a href="#paramDesc">具体属性含义，稍后解释</a>）后，第一个<code>Maven</code>项目就创建好了</p>
+                            <div id="inputParam" class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-3.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">创建好的项目结构符合<code>Maven</code>既定的规则</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-4.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>目录&文件</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">src/main/java</th>
+                                            <td>项目JAVA源码文件存储目录</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">src/main/resources</th>
+                                            <td>项目配置文件存储目录</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">src/test/java</th>
+                                            <td>项目JAVA测试源码文件存储目录</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">src/test/resources</th>
+                                            <td>项目测试配置文件存储目录</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">JRE System Library</th>
+                                            <td>项目的JRE类库，开发工具默认提供，用于源码编译</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">target</th>
+                                            <td>项目构建（编译，打包，发布站点）后，会将结果放置在此目录中</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">pom.xml</th>
+                                            <td>项目中maven依赖核心配置文件，类似于web系统中的<code>web.xml</code>,非常重要</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="lead">在<code>src/main/java</code>目录中添加<code>com.maven.atguigu.Hello</code>类</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">package com.maven.atguigu;
+
+public class Hello {
+    public void hello( String content ) {
+        System.out.println( "Hello " + content );
+    }
+}</code></pre></figure>
+                            <p class="lead">在<code>src/test/java</code>目录中添加<code>com.maven.atguigu.test.HelloTest</code>类</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.maven.atguigu.test;
+
+import org.junit.Test;
+import com.maven.atguigu.Hello;
+
+public class HelloTest {
+    @Test
+    public void hello() {
+        Hello hello = new Hello();
+        hello.hello("World");
+    }
+}</code></pre></figure>
+                            <p class="lead">类创建好后会发现，程序无法编译通过，因为在测试类<code>HelloTest</code>中使用了<code>JUnit</code>测试库中的类<code>org.junit.Test</code>，但是在当前项目的编译环境中并不存在，所以编译无法通过，发生了错误</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-5.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">解决方法非常简单，只需要在项目中引入测试类库即可，有很多种方法可以实现。</p>
+                            <p class="lead">我们这里采用<code>Maven</code>方式实现：在项目的<code>pom.xml</code>文件中增加配置</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span></code></pre></figure>
+                            <p class="lead">你会惊奇的发现，程序编译通过了，且项目的编译库增加了一个编译库<code>Maven Dependencies</code></p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-6.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead"><i style="color:#ce4844" class="glyphicon glyphicon-question-sign"></i> 为什么我们没有引入测试类库，程序也能编译通过？</p>
+                            <p class="lead"><i style="color:#ce4844" class="glyphicon glyphicon-user"></i> 究其原因，是<code>Maven</code>工具帮我们将测试类库增加到当前项目中，就是刚刚新增加的那个编译库<code>Maven Dependencies</code></p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-7.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>在JAVA程序中，A类用到了B类，我们一般称之为A依赖于B，如果B类中用到了C类，那么我们称之为A间接地依赖于C。</h4>
+                            </div>
+                            <p class="lead"><code>Maven</code>是如何将测试类库引入到项目中的呢，这里就需要说明之前向<code>pom.xml</code>文件中增加的内容了</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span></code></pre></figure>
+                            <p class="lead">在配置文件中<code>&lt;dependencies&gt;</code>表示依赖关系，其中<code>&lt;dependency&gt;</code>表示具体的某一个依赖的类库，如：<code>junit</code></p>
+                            <p class="lead">当增加<code>&lt;dependency&gt</code>后，就表示当前项目依赖于指定的类库(<code>jar</code>)，那么<code>Maven</code>就会在自己的仓库中按照指定的规则查找这个类库(<code>jar</code>)。</p>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>maven根据<span class="nt">&lt;groupId&gt;</span>，<span class="nt">&lt;artifactId&gt;</span>，<span class="nt">&lt;version&gt;</span>三个标签在仓库中进行定位，查找依赖的类库</h4>
+                                <br>
+                                <h4>如果你的maven仓库的位置为: "d:/maven/repository/", 根据规则，maven会从"d:/mavem/repository" + <span class="nt">&lt;groupId&gt;</span> + <span class="nt">&lt;artifactId&gt;</span> + <span class="nt">&lt;version&gt;</span>路径中查找类库。</h4>
+                                <br>
+                                <h4>如果要查找junit类库，那么maven会从 ：“d:/maven/repository/junit/junit/4.12/” 路径中查找指定的类库（jar包） </h4>
+                            </div>
+                            <p class="lead"><code>Maven</code><b>不仅仅将依赖的类库引入到项目中，连间接依赖的类库也会引入到当前项目中</b>，这样就省掉了我们自己查找的麻烦。</p>
+                        </div>
+                        <div id="second" class="bs-docs-section">
+                            <h1 class="page-header">创建第二个Maven项目</h1>
+                            <p class="lead">在项目视图中创建第二个<code>Maven</code>项目<code>HelloWorld</code>。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-9.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">在<code>src/main/java</code>目录中添加<code>com.maven.atguigu.HelloWorld</code>类</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">package com.maven.atguigu;
+
+public class HelloWorld {
+    public void hello() {
+        Hello hello = new Hello();
+        hello.hello("World");
+    }
+}</code></pre></figure>
+                            <p class="lead">在<code>src/test/java</code>目录中添加<code>com.maven.atguigu.test.HelloWorldTest</code>类</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.maven.atguigu.test;
+
+import org.junit.Test;
+import com.maven.atguigu.HelloWorld;
+
+public class HelloWorldTest {
+    @Test
+    public void helloWorld() {
+        HelloWorld hello = new HelloWorld();
+        hello.hello();
+    }
+}</code></pre></figure>
+                            <p class="lead">因为在<code>HelloWorld</code>项目中使用了<code>Hello</code>项目中的<code>Hello</code>类，为了保证编译通过，所以需要在<code>pom.xml</code>文件中增加对<code>Hello</code>项目的依赖配置</p>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>即使两个项目在同一个工作空间中也需要进行依赖关系的配置。</h4>
+                            </div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.maven.atguigu<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>Hello<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    ...
+<span class="nt">&lt;/dependencies&gt;</span></code></pre></figure>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-10.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">右键点击测试程序<code>HelloWorldTest</code>, 选择菜单<code>Run as <i class="glyphicon glyphicon-arrow-right"></i> Junit test</code> 对程序进行测试。</p>
+                            <figure class="highlight"><pre style="background:#000;color:#FFF;">Hello World</pre></figure>
+                            <p class="lead">Maven工具不仅仅能建立项目的依赖关系，也能执行自动化的构建操作，如测试。</p>
+                            <p class="lead">右键点击项目<code>Hello</code>或项目中的<code>pom.xml</code>, 选择菜单<code>Run as <i class="glyphicon glyphicon-arrow-right"></i> Maven test</code> 对程序进行测试。</p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">
+。。。考虑版面的原因，以上内容省略。。。
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.maven.atguigu.test.HelloTest
+Hello World
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.205 s
+[INFO] Finished at: 2017-08-18T10:32:28+08:00
+[INFO] Final Memory: 8M/155M
+[INFO] ------------------------------------------------------------------------
+
+</pre>
+                            </figure>
+                            <p class="lead">使用同样的测试方式，测试项目<code>HelloWorld</code></p>
+<pre style="background:#000;color:#FFF;">
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HelloWorld 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The POM for com.maven.atguigu:Hello:jar:0.0.1-SNAPSHOT is missing, no dependency information available
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.205 s
+[INFO] Finished at: 2017-08-18T10:36:12+08:00
+[INFO] Final Memory: 5M/123M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project HelloWorld: Could not resolve dependencies for project com.maven.atguigu:HelloWorld:jar:0.0.1-SNAPSHOT: Could not find artifact com.maven.atguigu:Hello:jar:0.0.1-SNAPSHOT -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+
+</pre>
+                            </figure>
+                            <p class="lead"><i style="color:#ce4844" class="glyphicon glyphicon-question-sign"></i> 为什么使用<code>Junit</code>执行测试的时候没有出现错误，而使用<code>Maven</code>做测试时，会发生错误？并且使用<code>Maven</code>测试<code>Hello</code>项目又没有问题呢？</p>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>使用JUnit执行测试时，项目可以关联到工作空间中依赖的其他项目中的类，不会出现错误。</h4>
+                                <br>
+                                <h4>使用Maven执行测试时，项目所依赖的类库必须从仓库中查找，即使在同一个工作空间中也无法直接关联。由于仓库中并不存在Hello的类库（jar包），所以发生错误。</h4>
+                            </div>
+                            <p class="lead">要想在<code>Maven</code>仓库中查找到<code>Hello</code>类库，就必须事先将<code>Hello</code>项目<b>安装</b>到仓库中</p>
+                            <p class="lead">右键点击项目<code>Hello</code>, 点击菜单<code>Run as <i class="glyphicon glyphicon-arrow-right"></i> Maven install</code></p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">
+。。。考虑版面的原因，以上内容省略。。。
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.maven.atguigu.test.HelloTest
+Hello World
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ Hello ---
+[INFO] Building jar: D:\KnowledgeHierarchy\workspace\course\Hello\target\Hello-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ Hello ---
+[INFO] Installing D:\KnowledgeHierarchy\workspace\course\Hello\target\Hello-0.0.1-SNAPSHOT.jar to D:\KnowledgeHierarchy\repertory\maven\com\maven\atguigu\Hello\0.0.1-SNAPSHOT\Hello-0.0.1-SNAPSHOT.jar
+[INFO] Installing D:\KnowledgeHierarchy\workspace\course\Hello\pom.xml to D:\KnowledgeHierarchy\repertory\maven\com\maven\atguigu\Hello\0.0.1-SNAPSHOT\Hello-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.607 s
+[INFO] Finished at: 2017-08-18T10:46:01+08:00
+[INFO] Final Memory: 8M/123M
+[INFO] ------------------------------------------------------------------------
+
+</pre>
+                            </figure>
+                            <div class="bs-callout bs-callout-danger" id="paramDesc">
+                                <h4>Maven安装类库的规则和从maven仓库中查找类库的规则完全相同</h4>
+                                <br>
+                                <h4>如果你的maven仓库的位置为: "d:/maven/repository/"<br>maven会从"d:/mavem/repository" + <span class="nt">&lt;groupId&gt;</span> + <span class="nt">&lt;artifactId&gt;</span> + <span class="nt">&lt;version&gt;</span>路径中查找类库。<br>那么也会按照此方式进行安装，所以在创建项目时需要指定<a href="#inputParam">相关的参数</a></h4>
+                            </div>
+                            <p class="lead">安装成功后，重新使用<code>maven</code>测试<code>HelloWorld</code>项目即可</p>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">
+。。。考虑版面的原因，以上内容省略。。。
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.maven.atguigu.test.HelloWorldTest
+Hello World
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.05 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.225 s
+[INFO] Finished at: 2017-08-18T10:49:36+08:00
+[INFO] Final Memory: 8M/155M
+[INFO] ------------------------------------------------------------------------
+
+</pre>
+                            </figure>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Maven命令</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Maven clean</th>
+                                            <td>清除当前maven项目中target文件夹已构建的内容</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Maven compile</th>
+                                            <td>编译当前maven项目的类及测试类</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Maven package</th>
+                                            <td>将当前maven项目进行打包操作</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Maven install</th>
+                                            <td>将当前maven项目打包后安装到仓库中，让其他项目可以访问</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Maven deploy</th>
+                                            <td>将当前maven项目发布到中央仓库或私服中。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Maven site</th>
+                                            <td>生成当前maven项目的站点（Web Site）信息。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="third" class="bs-docs-section">
+                            <h1 class="page-header">创建第三个Maven项目</h1>
+                            <p class="lead">在项目视图中创建第三个<code>Maven</code>项目<code>SayHelloWorld</code>。并增加对项目<code>HelloWorld</code>的依赖</p>
+                            <p class="lead">在<code>src/main/java</code>目录中添加<code>com.maven.atguigu.SayHelloWorld</code>类</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">package com.maven.atguigu;
+
+public class SayHelloWorld {
+
+    public void say( String who ) {
+        System.out.print(who + "say :");
+        HelloWorld helloWorld = new HelloWorld();
+        helloWorld.hello();
+    }
+}</code></pre></figure>
+                            <p class="lead">在<code>src/test/java</code>目录中添加<code>com.maven.atguigu.test.SayHelloWorldTest</code>类</p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">package com.maven.atguigu.test;
+
+import org.junit.Test;
+import com.maven.atguigu.SayHelloWorld;
+
+public class SayHelloWorldTest {
+
+    @Test
+    public void say() {
+        SayHelloWorld say = new SayHelloWorld();
+        say.say("I");
+    }
+}</code></pre></figure>
+                            <p class="lead">项目<code>SayHelloWorld</code>依赖于项目<code>HelloWorld</code>,而项目<code>HelloWorld</code>中依赖于<code>junit</code>，由于<code>maven</code>支持间接依赖，所以项目应该会自动依赖于<code>junit</code>，不会出现错误。但是实际上你会发现，情况不是这样的。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="/assets/img/li/sts-maven-11.jpg" class="thumbnail">
+                                  <img class="imgbox" src="/assets/img/li/sts-maven-11.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>在HelloWorld项目Junit依赖关系中的 <span class="nt">&lt;scope&gt;test&lt;/scope&gt;</span> 表示依赖类库的使用范围</h4>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-8.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p>
+在依赖声明中，scope标签指定的就是当前项目在什么情况下对目标项目有依赖。可选值包括：compile、test、provided、runtime等。<br>
+<ol>
+<li>compile：默认值。编译依赖范围。对于编译，测试，运行三种classpath都有效。</li>
+<li>test：测试依赖范围。只对于测试classpath有效。</li>
+<li>provided：已提供依赖范围。对于编译，测试的classpath都有效，但对于运行无效。因为由容器已经提供，例如servlet-api。</li>
+<li>runtime:运行范围，只在运行时有效</li>
+</ol>
+
+                            </p>
+                            <p class="lead">如果项目<code>SayHelloWorld</code>所依赖的项目<code>HelloWorld</code>, <code>Hello</code>中都依赖于<code>Junit</code>，但是依赖的版本不一样怎么办？</p>
+                            <p class="lead">依次修改项目<code>HelloWorld</code>, <code>Hello</code>中的<code>Junit</code>版本，对比观察效果</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-14.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-13.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>当项目存在相同的依赖关系时，需要遵循路径最近者优先，路径相同，最先声明者优先的原则。</h4>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-15.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-16.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="web" class="bs-docs-section">
+                            <h1 class="page-header">创建Maven Web项目</h1>
+                            <p class="lead"><code>Maven</code>项目默认创建的项目为<code>java</code>项目，可以被打包为<code>jar</code>文件，安装到仓库中，让其他项目使用，也可以创建为<code>web</code>项目，进行<code>web</code>服务</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-19.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-20.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>Spring Tool Suite 通过 Maven 建立web项目时，默认的web.xml文件版本为 2.3，jre版本为 1.5。</h4>
+                            </div>
+                            <p class="lead"><code>web.xml</code>文件<code>2.3</code>版本，<code>jre</code>版本<code>1.5</code>相对于当前主流项目开发来讲版本有些过时了，如果需要变更<code>web.xml</code>和<code>jre</code>的版本，需要进行相关的配置</p>
+                            <ol><li><p >修改jre的版本为1.8，需要在<code>pom.xml</code>文件中增加配置</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="c">&lt;!-- 修改maven默认的JRE编译版本，1.8代表JRE编译的版本，根据自己的安装版本选择1.7或1.8 --&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+                    <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span></code></pre></figure></li>
+                            <li><p >创建maven web项目时，可以默认采用<code>servlet</code> <code>2.5</code>版本，将项目的打包方式，设置为<code>war</code>,那么当前的项目就变为web项目了。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-2.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-18.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-17.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p >这种创建web项目的方式会导致项目缺少必要的<code>web.xml</code>文件，还需要做一些相关设置</p>
+                            <p >右键点击项目<code>HelloWeb</code>，选择菜单<code>Properties <i class="glyphicon glyphicon-arrow-right"></i> Project Facets</code> 先取消<code>Dynamic Web Module</code>复选框选中，应用(<code>apply</code>)后再重新选中后点击<code>Further configuration available</code>链接</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-21.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p >在弹出的窗口中输入生成<code>web.xml</code>文件的路径后点击应用即可</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-22.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-23.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            </li>
+                            </ol>
+                        </div>
+                        <div id="module" class="bs-docs-section">
+                            <h1 class="page-header">Maven的继承和模块化</h1>
+                            <p class="lead">实际的项目开发中，会在开发时将项目划分为多个不同的子项目，然后在运行时通过依赖关系将多个子项目合成一个项目后进行操作。</p>
+                            <p class="lead">在这种情况下，如何保证每一个子项目所依赖的类库是相同的？当子项目过多时，如何能简化每一个子项目的测试，打包，安装的操作？</p>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>让每一个子项目所依赖的类库是相同的，可以通过创建父项目，让所有子项目继承父项目的依赖关系的方法解决。</h4>
+                            </div>
+                            <p class="lead">创建父项目，需要将父项目的打包方式设置为<code>pom</code>方式，表明这个项目不用做开发，只用于管理</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-24.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">创建子项目，在配置中增加父项目关联即可</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-25.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">由于子项目继承了父项目，所以在子项目的<code>pom.xml</code>文件中，会增加相关配置信息，黄色的警告线表示该配置项已经从父项目中继承过来，不需要配置，删除即可</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.maven.atguigu<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>Parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span></code></pre></figure>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-26.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>当子项目过多时，可以通过maven模块化的方式简化每一个子项目的测试，打包，安装等操作。</h4>
+                            </div>
+                            <p class="lead">在父项目中，通过模块化的操作关联子项目，并在子项目中增加配置信息。然后可以通过父项目做多个命令操作，而同时子项目也会做相同的操作</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.maven.atguigu<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>Parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+        &lt!-- 从当前目录到父项目的pom.xml文件的相对路径 --&gt
+        <span class="nt">&lt;relativePath&gt;</span>../Parent/pom.xml<span class="nt">&lt;/relativePath&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span></code></pre></figure>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-28.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="life" class="bs-docs-section">
+                            <h1 class="page-header">Maven的生命周期</h1>
+                            <p class="lead">在<a href="#second">第二个Maven项目</a>中,我们执行了<code>maven</code>相关的命令：<code>Maven test</code>, <code>Maven install</code>, 你会发现在安装的同时也会进行测试，这说明不同的命令之间存在关联，这种关联体现了<code>maven</code>生命周期的概念。</p>
+                            <p class="lead"><code>Maven</code>有三套相互独立的生命周期
+                            <ol>
+                                <li><code>Clean Lifecycle</code>: 进行真正的构建之前进行一些清理工作</li>
+                                <li><code>Default Lifecycle</code>: 构建的核心部分，编译，测试，打包，安装，部署等等</li>
+                                <li><code>Site Lifecycle</code>: 生成项目报告，站点，发布站点</li>
+                            </ol>
+                            </p>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>它们是相互独立的，你可以仅仅调用clean来清理工作目录，仅仅调用site来生成站点。当然你也可以直接运行clean install site 运行所有这三套生命周期。</h4>
+                            </div>
+                            <p class="lead"><code>maven</code>的每一个生命周期都包含很多的命令，而且命令之间存在先后顺序，如果执行顺序靠后的命令，<code>maven</code>会将靠前命令依次执行，这样就简化了操作的步骤，方便了很多。</p>
+                            <p class="lead"><code>Clean Lifecycle</code></p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Maven命令</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">pre-clean</th>
+                                            <td>执行一些需要在clean之前完成的工作</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">clean</th>
+                                            <td>移除所有上一次构建生成的文件</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">post-clean</th>
+                                            <td>执行一些需要在clean之后立刻完成的工作</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行。也就是说，clean 等同于 pre-clean clean，如果我们运行post-clean，那么pre-clean，clean都会被运行。这是Maven很重要的一个规则，可以大大简化操作</h4>
+                            </div>
+                            <p class="lead"><code>Default Lifecycle</code></p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Maven命令</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">validate</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">generate-sources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-sources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">generate-resources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-resources</th>
+                                            <td>复制并处理资源文件，至目标目录，准备打包。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">compile</th>
+                                            <td>编译项目的源代码。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-classes</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">generate-test-sources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-test-sources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">generate-test-resources</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-test-resources</th>
+                                            <td>复制并处理资源文件，至目标测试目录。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">test-compile</th>
+                                            <td>编译测试源代码。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">process-test-classes</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">test</th>
+                                            <td>使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">prepare-package</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">package</th>
+                                            <td>接受编译好的代码，打包成可发布的格式，如JAR。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">pre-integration-test</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">integration-test</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">post-integration-test</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">verify</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">install</th>
+                                            <td>将包安装至本地仓库，以让其它项目依赖。</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">deploy</th>
+                                            <td>将最终的包复制到远程的仓库，以让其它开发人员与项目共享或部署到服务器上运行。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>Default生命周期是Maven生命周期中最重要的一个，绝大部分工作都发生在这个生命周期中。</h4>
+                            </div>
+                            <p class="lead"><code>Site Lifecycle</code></p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Maven命令</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">pre-site</th>
+                                            <td>执行一些需要在生成站点文档之前完成的工作</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">site</th>
+                                            <td>生成项目的站点文档</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">post-site</th>
+                                            <td>执行一些需要在生成站点文档之后完成的工作，并且为部署做准备</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">site-deploy</th>
+                                            <td>将生成的站点文档部署到特定的服务器上</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="repos" class="bs-docs-section">
+                            <h1 class="page-header">Maven的仓库</h1>
+                            <p class="lead"><code>Maven</code>工具默认的仓库分为两类</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Maven仓库</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">本地仓库</th>
+                                            <td>每个用户只有一个本地仓库<br>本地仓库中的项目可以为本机上的所有Maven项目所共享</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">远程仓库</th>
+                                            <td>私服——是一种特殊的远程仓库，它是架设在局域网内的仓库：为局域网中全部的Maven项目共享<br><br>
+                                            中央仓库——Maven默认的远程仓库：可以为全世界的Maven用户共享。中央仓库的地址是：<code>http://repo1.maven.org/maven2</code><br><br>
+                                            镜像——用来替代中央仓库，分担中央仓库的负荷，速度一般比中央仓库快。
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>Maven在仓库中检索项目, 首先在本地仓库中查找，如果找不到就到局域网中的私服中去找，还找不到就连接中央仓库或镜像。从中央仓库或镜像中找到后，如果局域网中架设了私服，就保存到私服上，下次同一局域网中的其他用户直接从私服上下载即可，不必连接中央仓库或镜像了。如果局域网中没有架设私服，则保存在本地仓库中。</h4>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-maven-29.jpg" alt="创建maven项目">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-3" role="complementary">
+                        <div class=" nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#env" class="list-group-item">环境</a>
+                                      <a href="#build" class="list-group-item">开发工具集成</a>
+                                      <a href="#first" class="list-group-item">创建第一个Maven项目<code>Hello</code></a>
+                                      <a href="#second" class="list-group-item">创建第二个Maven项目<code>HelloWorld</code></a>
+                                      <a href="#third" class="list-group-item">创建第三个Maven项目<code>SayHelloWorld</code></a>
+                                      <a href="#web" class="list-group-item">创建Maven Web项目<code>HelloWeb</code></a>
+                                      <a href="#module" class="list-group-item">Maven的继承和模块化</a>
+                                      <a href="#life" class="list-group-item">Maven的生命周期</a>
+                                      <a href="#repos" class="list-group-item">Maven的仓库</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <div class="modal fade" id="pdfModal" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="false" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:960px;height:600px;border-radius:2px;">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 style="font-size: 16px;text-align:center;font-weight:bold;" class="modal-title"><span class="text-muted">Maven权威指南【中文版】</span></h4>
+                    </div>
+                    <div id="pdfBody" class="modal-body" style="padding:2px;width:100%;height:540px;">
+                        <iframe id="pdfiframe" src="/assets/plugin/pdf/pdf.html" width="100%" height="100%" frameborder="0" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $("video").parent().css("cursor", "pointer");
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+            
+            $("img").parent().attr("href", "javascript:;");
+        });
+        
+        function showPDF() {
+            var winWidth;
+            if (window.innerWidth)
+                winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+                winWidth = document.body.clientWidth;
+            var dis = ( winWidth - 900 ) / 2;
+            var left = "-"+dis+"px";
+            $("#pdfModal").modal("show").css({"margin-left":left});
+        }
+        </script>
+    </body>
+</html>

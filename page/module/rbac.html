@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>RBAC权限模型</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>RBAC权限模型</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div id="remark" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概念</h1>
+                            <p class="lead">权限管理，这是每个软件系统都会涉及到的，而且权限管理的需求本质往往都是一样，不同的角色拥有不同的权限，只要你充当了某个角色，你就拥有了相对应的功能。</p>
+                            <p class="lead"><code>RBAC</code>（<code>Role-Based Access Control</code>，基于角色的访问控制），就是用户通过角色与权限进行关联。简单地说，一个用户拥有若干角色，每一个角色拥有若干权限。这样，就构造成<b>“用户-角色-权限”</b>的授权模型。在这种模型中，用户与角色之间，角色与权限（功能）之间，一般都是多对多的关系。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-01.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <p class="lead">上面这个的表比较简单，实际的工作中，权限模型设计的表会比较复杂。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-02.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="level" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">RBAC级别</h1>
+                            <h3 id="overview-doctype">RBAC0</h3>
+                            <p class="lead"><code>RBAC</code>核心模型, 其他的级别都是建立在该级别的基础上。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-03.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-04.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">RBAC1</h3>
+                            <p class="lead">基于<code>RBAC0</code>模型，进行了角色的分层，也就是说角色上有了上下级的区别。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-05.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">RBAC2</h3>
+                            <p class="lead"><code>RBAC2</code>，也是基于<code>RBAC0</code>模型的基础上，进行了角色的访问控制。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-06.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <h3 id="overview-doctype">RBAC3</h3>
+                            <p class="lead"><code>RBAC3</code>，是最全面的权限管理，它是在<code>RBAC0</code>的基础上，将<code>RBAC1</code>和<code>RBAC2</code>进行整合了，最全面，也最复杂的。</p>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/sts-rbac-07.jpg" alt="rbac">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4>任何系统中都会涉及到权限管理的模块，无论复杂简单，我们都可以通过以<code>RBAC</code>模型为基础，进行灵活运用来解决我们的问题。</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="#remark" class="list-group-item">概念</a>
+                                      <a href="#level" class="list-group-item">RBAC级别</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class=" bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $("a").each(function(){
+            var href = $(this).attr("href");
+            if ( href == "#" ) {
+                $(this).attr("href", "javascript:;");
+            }
+        });
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+        </script>
+    </body>
+</html>

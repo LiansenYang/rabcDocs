@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <link href="/assets/style/stickup.css" rel="stylesheet" />
+        <link href="/assets/style/pygments-manni.css" rel="stylesheet" />
+        <title>框架集成</title>
+        <style>
+        body  {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        .tooltip {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        .highlight {
+            padding: 0;
+            margin-bottom: 14px;
+            background-color: #f7f7f9;
+            border: 0px solid #e1e1e8;
+            border-radius: 4px;
+        }
+        .bs-callout {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+        }
+        .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+          margin-bottom: 0;
+        }
+        .bs-callout code {
+          border-radius: 3px;
+        }
+
+        /* Tighten up space between multiple callouts */
+        .bs-callout + .bs-callout {
+          margin-top: -5px;
+        }
+
+        /* Variations */
+        .bs-callout-danger {
+          border-left-color: #ce4844;
+        }
+        .bs-callout-danger h4 {
+          color: #ce4844;
+        }
+        .bs-callout-warning {
+          border-left-color: #aa6708;
+        }
+        .bs-callout-warning h4 {
+          color: #aa6708;
+        }
+        .bs-callout-info {
+          border-left-color: #1b809e;
+        }
+        .bs-callout-info h4 {
+          color: #1b809e;
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>SpringMVC + Spring + Mybatis</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                    <a class="btn btn-lg btn-primary" href="/page/framework/ssm.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 基础框架导航 </a>
+                </p>
+            </div>
+        </div>
+        <div class="bc-social">
+            <div class="container">
+                <ul class="bc-social-buttons">
+                    <li class="social-forum">
+                      <a class="" href="https://spring.io/" title="Spring官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Spring官网
+                      </a>
+                    </li>
+                    <li class="social-forum">
+                      <a class="" href="http://www.mybatis.org/mybatis-3/" title="Mybatis官网" target="_blank" >
+                        <i class="glyphicon glyphicon-globe"></i> Mybatis官网
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">概述</h1>
+                            <p class="lead">学习本章之前，我们应该对<code>SpringMVC</code>, <code>Spring</code>, <code>Mybatis</code>框架有一个完整的了解，并熟练使用单独框架进行简单的代码开发，如果不能做到，请返回到相关课件页面进行学习，再进入当前页学习本章内容，谢谢。</p>
+                            <p class="lead">此课件基于<code>Maven</code>创建项目，如果对于<code>Maven</code>工具不是很了解，请点击<a href="/page/soft/maven.html" target="_blank">链接</a>学习相关课件</p>
+                            <p class="lead">本章框架集成所使用的软件版本要求如下：</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-4">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>软件</th>
+                                            <th>版本</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">SpringMVC</th>
+                                            <td>4.0.0.RELEASE</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Spring</th>
+                                            <td>4.0.0.RELEASE</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Mybatis</th>
+                                            <td>3.2.8</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">C3P0连接池</th>
+                                            <td>0.9.2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">MYSQL驱动</th>
+                                            <td>5.1.37</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="maven" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">创建Maven Web项目</h1>
+                            <p class="lead">在<code>Spring Tool Suite</code>中创建<code>Maven</code>项目，生成<code>web.xml</code>文件</p>
+<figure class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;?xml <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">encoding=</span><span class="s">"UTF-8"</span>?<span class="nt">&gt;</span>
+<span class="nt">&lt;web-app <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/javaee"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span> <span class="na">id=</span><span class="s">"WebApp_ID"</span> <span class="na">version=</span>"2.5"</span></span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/web-app&gt;</span></code></pre>
+</figure>
+                            <div class="bs-callout bs-callout-danger" id="callout-glyphicons-empty-only">
+                                <h4><code>web.xml</code>是整个项目的核心配置文件，也可以理解为Web程序访问的入口，非常重要</h4>
+                                <p>在<code>servlet3.0</code>及后续版本中，此配置文件可省略，采用注解方式替代，本课程暂不涉及。</p>
+                            </div>
+                            <p class="lead">在项目的<code>pom.xml</code>文件中增加依赖关系：<label style="cursor:pointer;color:#ce4844;" data-toggle="modal" data-target="#myModal">点击详细</label></p>
+                        </div>
+                        <div id="spring" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">集成Spring框架</h1>
+                            <p class="lead"><code>Spring</code>框架是整个系统架构的核心，将前端请求数据的处理以及数据库的数据操作整合在一起，非常重要。</p>
+                            <p class="lead">在<code>web.xml</code>文件中增加配置信息集成<code>Spring</code>框架</p>
+<figure class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;web-app</span><span class="nt">&gt;</span>
+...
+    <span class="nt">&lt;context-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>classpath*:spring/spring-*.xml<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/context-param&gt;</span>
+    <span class="nt">&lt;listener&gt;</span>
+        <span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+    <span class="nt">&lt;/listener&gt;</span>
+...
+<span class="nt">&lt;/web-app&gt;</span></code></pre>
+</figure>
+                            <p class="lead"><code>Spring</code>环境构建时需要读取<code>web</code>应用的初始化参数<code>contextConfigLocation</code>, 从<code>classpath</code>中读取配置文件<code>spring/spring-*.xml</code></p>
+                            <p class="lead">在项目<code>src/main/resources</code>目录中增加<code>spring</code>文件夹，并在其中增加<code>spring-context.xml</code>配置文件。</p>
+<figure class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;?xml <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">encoding=</span><span class="s">"UTF-8"</span>?<span class="nt">&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+    <span class="na">xmlns:tx=</span><span class="s">"http://www.springframework.org/schema/tx"</span>
+    <span class="na">xmlns:aop=</span><span class="s">"http://www.springframework.org/schema/aop"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/beans&gt;</span></code></pre>
+</figure>
+                            <p class="lead"><code>Spring</code>框架的核心是构建对象，整合对象之间的关系（<code>IOC</code>）及扩展对象功能（<code>AOP</code>），所以需要在<code>spring-context.xml</code>配置文件中增加业务对象扫描的相关配置。扫描后由<code>Spring</code>框架进行管理和组合。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.atguigu.*"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;context:exclude-filter</span> <span class="na">type=</span><span class="s">"annotation"</span> <span class="na">expression=</span><span class="s">"org.springframework.stereotype.Controller"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/context:component-scan&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <div class="bs-callout bs-callout-danger" id="callout-inputgroup-text-input-only">
+                                <h4>扫描配置中为什么要排除<code>Controller</code>注解</h4>
+                                <p><code>Controller</code>注解的的作用是声明控制器（处理器）类。</p>
+                                <p>从数据流转的角度，这个类应该是由<code>SpringMVC</code>框架进行管理和组织的，所以不需要由<code>Spring</code>框架扫描。</p>
+                            </div>
+                        </div>
+                        <div id="springMVC" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">集成SpringMVC框架</h1>
+                            <p class="lead"><code>SpringMVC</code>框架用于处理系统中数据的流转及控制操作。<br>（从哪里来，到哪里去。多么有哲理的一句话。）</p>
+                            <p class="lead">集成<code>SpringMVC</code>框架，需要在<code>web.xml</code>文件中增加配置信息</p>
+<figure class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;web-app</span><span class="nt">&gt;</span>
+...
+    <span class="nt">&lt;servlet&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>springmvc<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>classpath:spring/springmvc-context.xml<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+        <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+    <span class="nt">&lt;/servlet&gt;</span>
+    <span class="nt">&lt;servlet-mapping&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>springmvc<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/servlet-mapping&gt;</span>
+...
+<span class="nt">&lt;/web-app&gt;</span></code></pre>
+</figure>
+                            <p class="lead"><code>SpringMVC</code>环境构建时需要读取<code>servlet</code>初始化参数<code>init-param</code>, 从<code>classpath</code>中读取配置文件<code>spring/springmvc-context.xml</code></p>
+                            <p class="lead">在项目<code>src/main/resources/spring</code>目录中，增加<code>springmvc-context.xml</code>配置文件。</p>
+<figure><pre><code class="language-html" data-lang="html"><span class="nt">&lt;?xml <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">encoding=</span><span class="s">"UTF-8"</span>?<span class="nt">&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+    <span class="na">xmlns:p=</span><span class="s">"http://www.springframework.org/schema/p"</span>
+    <span class="na">xmlns:mvc=</span><span class="s">"http://www.springframework.org/schema/mvc"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/beans&gt;</span></code></pre>
+</figure>
+                            <p class="lead"><code>SpringMVC</code>框架的核心是处理数据的流转，所以需要在<code>springmvc-context.xml</code>配置文件中增加控制器对象（<code>Controller</code>）扫描的相关配置。扫描后由<code>SpringMVC</code>框架进行管理和组合。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.atguigu.*"</span> <span class="na">use-default-filters=</span><span class="s">"false"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;context:include-filter</span> <span class="na">type=</span><span class="s">"annotation"</span> <span class="na">expression=</span><span class="s">"org.springframework.stereotype.Controller"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/context:component-scan&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <div class="bs-callout bs-callout-danger" id="callout-inputgroup-text-input-only">
+                                <h4>静态资源如何不被<code>SpringMVC</code>框架进行拦截</h4>
+                                <p>在配置文件中增加<code>&lt;mvc:default-servlet-handler/&gt;</code>, <code>&lt;mvc:annotation-driven /&gt;</code>即可</p>
+                                <p>在实际的项目中静态资源不会和动态资源放在一起，也就意味着不会放置在服务器中，所以这些配置可以省略。</p>
+                            </div>
+                            <p class="lead">如果<code>SpringMVC</code>框架数据处理为页面跳转，那么需要配置相应的视图解析器<code>ViewResolver</code>。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"viewClass"</span> <span class="na">value=</span><span class="s">"org.springframework.web.servlet.view.JstlView"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"prefix"</span> <span class="na">value=</span><span class="s">"/WEB-INF/jsp/"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"suffix"</span> <span class="na">value=</span><span class="s">".jsp"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <div class="bs-callout bs-callout-danger" id="callout-inputgroup-text-input-only">
+                                <h4>如果有多个视图解析器怎么办？</h4>
+                                <p><code>SpringMVC</code>框架中允许存在多个视图解析器，框架会按照配置声明顺序，依次进行解析。</p>
+                                <p><code>SpringMVC</code>框架中配置多个视图解析器时，如果将<code>InternalResourceViewResolver</code>解析器配置在前，那么即使找不到视图，框架也不会继续解析，直接发生<code>404</code>错误，所以必须将<code>InternalResourceViewResolver</code>解析器放置在最后。</p>
+                            </div>
+                            <p class="lead">如果<code>SpringMVC</code>框架数据处理为响应<code>JSON</code>字符串，那么为了浏览器方便对响应的字符串进行处理，需要明确字符串的类型及编码方式。</p>
+                            <p class="lead"><b>如果增加了<code>&lt;mvc:annotation-driven /&gt;</code>标签，下面的配置可省略。</b></p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">"org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"messageConverters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;list</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">"org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"</span> <span class="nt">&gt;</span>
+                    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"supportedMediaTypes"</span> <span class="nt">&gt;</span>
+                        <span class="nt">&lt;list</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;value</span><span class="nt">&gt;</span>application/json;charset=UTF-8<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/list</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;/bean&gt;</span>
+            <span class="nt">&lt;/list</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <p class="lead">如果项目中含有文件上传业务，还需要增加文件上传解析器<code>MultipartResolver</code></p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"multipartResolver"</span> <span class="na">class=</span><span class="s">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span> <span class="na">p:defaultEncoding=</span><span class="s">"UTF-8"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"maxUploadSize"</span> <span class="na">value=</span><span class="s">"2097152"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"resolveLazily"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                        </div>
+                        <div id="mybatis" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">集成Mybatis框架</h1>
+                            <p class="lead"><code>Mybatis</code>框架主要处理业务和数据库之间的数据交互，所以创建对象和管理对象生命周期的职责可以委托<code>Spring</code>框架完成。如：创建<code>Mybatis</code>核心对象。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"sqlSessionFactory"</span> <span class="na">class=</span><span class="s">"org.mybatis.spring.SqlSessionFactoryBean"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"configLocation"</span> <span class="na">value=</span><span class="s">"classpath:mybatis/config.xml"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dataSource"</span> <span class="na">ref=</span><span class="s">"dataSource"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"mapperLocations"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;list</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;value</span><span class="nt">&gt;</span>classpath*:mybatis/mapper-*.xml<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/list</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"mapperScannerConfigurer"</span> <span class="na">class=</span><span class="s">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property <span class="na">name=</span><span class="s">"basePackage"</span> <span class="na">value=</span><span class="s">"com.atguigu.atcrowdfunding.**.dao"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <p class="lead">既然需要和数据库进行关联，那么<code>Mybatis</code>核心对象就需要依赖于数据库连接池（<code>C3P0</code>）,所以在<code>Spring</code>配置文件中增加相应的配置。</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"dataSource"</span> <span class="na">class=</span><span class="s">"com.mchange.v2.c3p0.ComboPooledDataSource"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driverClass"</span> <span class="na">value=</span><span class="s">"com.mysql.jdbc.Driver"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"jdbcUrl"</span> <span class="na">value=</span><span class="s">"jdbc:mysql://localhost:3306/atcrowdfunding?rewriteBatchedStatements=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"user"</span> <span class="na">value=</span><span class="s">"root"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"root"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <p class="lead">集成<code>Mybatis</code>框架时同时还需要增加核心配置文件<code>mybatis/config.xml</code>。</p>
+<figure><pre><code class="language-html" data-lang="html"><span class="nt">&lt;?xml <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">encoding=</span><span class="s">"UTF-8"</span>?<span class="nt">&gt;</span>
+<span class="nt">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
+<span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;typeAliases</span><span class="nt">&gt;</span>
+        ...
+    <span class="nt">&lt;/typeAliases</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span></code></pre>
+</figure>
+                            <p class="lead">及<code>SQL</code>映射文件<code>mybatis/mapper-*.xml</code>。</p>
+<figure><pre><code class="language-html" data-lang="html"><span class="nt">&lt;?xml <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">encoding=</span><span class="s">"UTF-8"</span>?<span class="nt">&gt;</span>
+<span class="nt">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">"xxx.XXDao"</span> <span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/mapper&gt;</span></code></pre>
+</figure>
+                            <p class="lead">为了保证数据操作的一致性，必须在程序中增加事务处理。<code>Spring</code>框架采用声明式事务，通过<code>AOP</code>的方式将事务增加到业务中。所以需要在<code>Spring</code>配置文件中增加相关配置</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;beans</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"transactionManager"</span> <span class="na">class=</span><span class="s">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dataSource"</span> <span class="na">ref=</span><span class="s">"dataSource"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">"transactionAdvice"</span> <span class="na">transaction-manager=</span><span class="s">"transactionManager"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;tx:attributes</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"*"</span> <span class="na">propagation=</span><span class="s">"REQUIRED"</span> <span class="na">isolation=</span><span class="s">"DEFAULT"</span> <span class="na">rollback-for=</span><span class="s">"java.lang.Exception"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"query*"</span> <span class="na">read-only=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/tx:attributes</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/tx:advice&gt;</span>    
+    <span class="nt">&lt;aop:config</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;aop:advisor</span> <span class="na">advice-ref=</span><span class="s">"transactionAdvice"</span> <span class="na">pointcut=</span><span class="s">"execution(* com.atguigu..*Service.*(..))"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/aop:config&gt;</span>
+    ...
+<span class="nt">&lt;/beans&gt;</span></code></pre></figure>
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only">
+                                <h4>测试前，需要在数据库中增加<code>atcrowdfunding</code>库及<code>t_user</code>表。</h4>
+                            </div>
+                            <figure class="highlight">
+<pre style="background:#000;color:#FFF;">
+CREATE DATABASE `atcrowdfunding`;
+...
+CREATE TABLE `t_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+</pre>                      </figure>
+                        </div>
+                        <div id="test" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">框架集成测试</h1>
+                            <p class="lead">框架集成完毕后，需要增加代码程序进行简单的测试。</p>
+                            <p class="lead">增加代码前请参考<a href="javascript:;" onclick="showPDF()" ><b>《阿里巴巴Java开发手册》</b></a></p>
+                            <p class="lead">在<code>src/main/java/com/atguigu/atcrowdfunding/controller</code>目录中增加<code>UserController</code></p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+    @RequestMapping("/index")
+    public String index() {
+        return "user/index";
+    }
+    
+    @ResponseBody
+    @RequestMapping("/json")
+    public Object json() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", "张三");
+        return map;
+    }
+}
+</code></pre></figure>
+                            <p class="lead">将<code>web</code>项目发布到服务器中，启动服务器，浏览器中分别输入路径<code>http://127.0.0.1:8080/应用路径名称/user/index</code>，<code>http://127.0.0.1:8080/应用路径名称/user/json</code>进行测试。</p>
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only">
+                                <h4>如果访问成功，说明项目中<code>SpringMVC</code>框架集成成功。</h4>
+                            </div>
+                            <p class="lead">在<code>src/main/java/com/atguigu/atcrowdfunding/service</code>目录中增加<code>UserService</code>接口。</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.service;
+
+public interface UserService {
+
+}
+</code></pre></figure>
+                            <p class="lead">在<code>src/main/java/com/atguigu/atcrowdfunding/service/impl</code>目录中增加<code>UserServiceImpl</code>实现类。</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.service.impl;
+
+import com.atguigu.atcrowdfunding.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserDao userDao;
+}
+</code></pre></figure>
+                            <p class="lead">在<code>src/main/java/com/atguigu/atcrowdfunding/dao</code>目录中增加<code>UserDao</code>接口。</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.dao;
+
+public interface UserDao {
+
+}
+</code></pre></figure>
+                            <p class="lead">修改<code>UserController</code>类，增加对<code>UserService</code>接口的引用。</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+    
+    @RequestMapping("/index")
+    public String index() {
+        return "user/index";
+    }
+    
+    @ResponseBody
+    @RequestMapping("/json")
+    public Object json() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", "张三");
+        return map;
+    }
+}</code></pre></figure>
+                            <p class="lead">重启服务器，重新通过浏览器中访问路径<code>http://127.0.0.1:8080/应用路径名称/user/index</code>进行测试。</p>
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only">
+                                <h4>如果访问成功，说明项目中<code>Spring</code>框架（<code>IOC</code>功能）集成成功。</h4>
+                            </div>
+                            <p class="lead">在<code>src/main/java/com/atguigu/corwdfunding/bean</code>目录中增加<code>User</code>实体类。</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.bean;
+
+public class User {
+
+}
+</code></pre></figure>
+                            <p class="lead">在<code>UserService</code>接口中增加方法声明<code>queryById</code>，并在<code>UserServiceImpl</code>类中默认实现</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.service;
+
+import com.atguigu.atcrowdfunding.bean.User;
+public interface UserService {
+    public User queryById();
+}
+</code></pre></figure>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.service.impl;
+
+import com.atguigu.atcrowdfunding.bean.User;
+import com.atguigu.atcrowdfunding.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserDao userDao;
+    
+    public User queryById() {
+        return userDao.queryById();
+    }
+}
+</code></pre></figure>
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only">
+                                <h4>如果访问成功，说明项目中<code>Spring</code>框架（<code>AOP</code>功能）集成成功。</h4>
+                            </div>
+                            <p class="lead">在<code>UserDao</code>中增加查询语句，实现数据库查询</p>
+<figure class="highlight"><pre><code >package com.atguigu.atcrowdfunding.dao;
+
+import com.atguigu.atcrowdfunding.bean.User;
+import org.apache.ibatis.annotations.Select;
+
+public interface UserDao {
+    
+	@Select("select * from t_user where id = 1")
+	public User queryById();
+}
+</code></pre></figure>
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only">
+                                <h4>如果访问成功，说明项目中<code>Mybatis</code>框架集成成功。</h4>
+                            </div>
+                        </div>
+                        <div id="env" class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">模拟生产环境</h1>
+                            <p class="lead">Web软件开发中，由于开发阶段不同，系统环境主要分为：开发环境，测试环境，生产环境。</p>
+                            <p class="lead">将系统部署到生产环境后，经常会听开发人员这么说：这个<code>Bug</code>不应该呀，我们在测试时没问题呀，怎么到了生产环境就不行了呢!!!</p>
+                            <p class="lead">其实之所以会出现这种情况，很大程度上是因为我们在项目的不同阶段时，对应用系统的访问方式不一样所造成的。</p>
+                            <p class="lead">一般在开发，测试阶段时，我们都会以本地服务器地址<code>http://localhost:8080/project</code>访问系统，但是在生产环境中，我们的访问方式发生了变化：<code>http://com.xxxxx/</code>，由于环境的不同，导致访问方式的变化，那么就会产生很多之前没有的问题。</p>
+                            <p class="lead"><b>如果能将开发，测试，生产环境的访问方式保持一致的话，那么就可以提前发现客户在使用时所发生的问题，将这些问题提前解决，还是非常不错的。</b></p>
+                            <ul>
+                                <li class="lead"><p>将<code>Tomcat</code>服务器的默认<code>HTTP</code>监听端口号：<code>8080</code>修改为<code>80</code></p></li>
+                                <li class="lead"><p>将项目中<code>.settings</code>目录下的配置文件<code>org.eclipse.wst.common.component</code>中的<code>context-root</code>属性修改为<code>/(斜杠)</code></li>
+                                <li class="lead"><p>修改系统主机文件<code>c:\Windows\System32\drivers\etc\hosts</code>增加<code>IP</code>地址和域名的解析关系：<code>127.0.0.1 www.atcrowdfunding.com</code></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-md-3" role="complementary">
+                        <div class=" nav-wrapper bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">页面导航</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                        <a href="#maven" class="list-group-item">创建Maven Web项目</a>
+                                        <a href="#spring" class="list-group-item">集成Spring框架</a>
+                                        <a href="#springMVC" class="list-group-item">集成SpringMVC框架</a>
+                                        <a href="#mybatiss" class="list-group-item">集成Mybatis框架</a>
+                                        <a href="#test" class="list-group-item">框架集成测试</a>
+                                        <a href="#env" class="list-group-item">模拟生产环境</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:660px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">项目依赖类库</h4>
+                    </div>
+                    <div class="modal-body">
+                            <figure class="highlight">
+<pre style="height:400px;">
+<span class="nt">&lt;dependencies&gt;                                                              </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;                          </span>
+<span class="nt">        &lt;version&gt;2.5&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;                       </span>
+<span class="nt">        &lt;version&gt;2.1.3-b06&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;                          </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;                       </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;                          </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;                           </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-web&lt;/artifactId&gt;                           </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;                        </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;com.mchange&lt;/groupId&gt;                                </span>
+<span class="nt">        &lt;artifactId&gt;c3p0&lt;/artifactId&gt;                                 </span>
+<span class="nt">        &lt;version&gt;0.9.2&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;cglib&lt;/groupId&gt;                                      </span>
+<span class="nt">        &lt;artifactId&gt;cglib&lt;/artifactId&gt;                                </span>
+<span class="nt">        &lt;version&gt;2.2&lt;/version&gt;                                        </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.aspectj&lt;/groupId&gt;                                </span>
+<span class="nt">        &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;                        </span>
+<span class="nt">        &lt;version&gt;1.6.8&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="c">    &lt;!-- Spring整合MyBatis --&gt;                                              </span>
+<span class="c">    &lt;!-- MyBatis中延迟加载需要使用Cglib --&gt;                                 </span>
+<span class="c">    &lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;         </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;                                </span>
+<span class="nt">        &lt;artifactId&gt;mybatis&lt;/artifactId&gt;                              </span>
+<span class="nt">        &lt;version&gt;3.2.8&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;                                </span>
+<span class="nt">        &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;                       </span>
+<span class="nt">        &lt;version&gt;1.2.2&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="c">    &lt;!-- 控制日志输出：结合log4j --&gt;                                        </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;log4j&lt;/groupId&gt;                                      </span>
+<span class="nt">        &lt;artifactId&gt;log4j&lt;/artifactId&gt;                                </span>
+<span class="nt">        &lt;version&gt;1.2.17&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;                                  </span>
+<span class="nt">        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;                            </span>
+<span class="nt">        &lt;version&gt;1.7.7&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;                                  </span>
+<span class="nt">        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;                        </span>
+<span class="nt">        &lt;version&gt;1.7.7&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;mysql&lt;/groupId&gt;                                      </span>
+<span class="nt">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;                 </span>
+<span class="nt">        &lt;version&gt;5.1.37&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;jstl&lt;/groupId&gt;                                       </span>
+<span class="nt">        &lt;artifactId&gt;jstl&lt;/artifactId&gt;                                 </span>
+<span class="nt">        &lt;version&gt;1.2&lt;/version&gt;                                        </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="c">    &lt;!-- ********其他****************************** --&gt;                     </span>
+<span class="nt">                                                                                  </span>
+<span class="c">    &lt;!-- Ehcache二级缓存 --&gt;                                                </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;                             </span>
+<span class="nt">        &lt;artifactId&gt;ehcache&lt;/artifactId&gt;                              </span>
+<span class="nt">        &lt;version&gt;1.6.2&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">                                                                                  </span>
+<span class="c">    &lt;!-- 石英调度 - 开始 --&gt;                                                </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;                       </span>
+<span class="nt">        &lt;artifactId&gt;quartz&lt;/artifactId&gt;                               </span>
+<span class="nt">        &lt;version&gt;1.8.5&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;               </span>
+<span class="nt">        &lt;version&gt;4.0.0.RELEASE&lt;/version&gt;                              </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;commons-collections&lt;/groupId&gt;                        </span>
+<span class="nt">        &lt;artifactId&gt;commons-collections&lt;/artifactId&gt;                  </span>
+<span class="nt">        &lt;version&gt;3.1&lt;/version&gt;                                        </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="c">    &lt;!-- 石英调度 - 结束 --&gt;                                                </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt;                       </span>
+<span class="nt">        &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt;                   </span>
+<span class="nt">        &lt;version&gt;1.9.2&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;                             </span>
+<span class="nt">        &lt;artifactId&gt;poi&lt;/artifactId&gt;                                  </span>
+<span class="nt">        &lt;version&gt;3.9&lt;/version&gt;                                        </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.jfree&lt;/groupId&gt;                                  </span>
+<span class="nt">        &lt;artifactId&gt;jfreechart&lt;/artifactId&gt;                           </span>
+<span class="nt">        &lt;version&gt;1.0.19&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;                         </span>
+<span class="nt">        &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;                   </span>
+<span class="nt">        &lt;version&gt;1.3.1&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.freemarker&lt;/groupId&gt;                             </span>
+<span class="nt">        &lt;artifactId&gt;freemarker&lt;/artifactId&gt;                           </span>
+<span class="nt">        &lt;version&gt;2.3.19&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;                               </span>
+<span class="nt">        &lt;artifactId&gt;activiti-engine&lt;/artifactId&gt;                      </span>
+<span class="nt">        &lt;version&gt;5.15.1&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;                               </span>
+<span class="nt">        &lt;artifactId&gt;activiti-spring&lt;/artifactId&gt;                      </span>
+<span class="nt">        &lt;version&gt;5.15.1&lt;/version&gt;                                     </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;                         </span>
+<span class="nt">        &lt;artifactId&gt;commons-email&lt;/artifactId&gt;                        </span>
+<span class="nt">        &lt;version&gt;1.3.1&lt;/version&gt;                                      </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">                                                                                  </span>
+<span class="nt">    &lt;dependency&gt;                                                            </span>
+<span class="nt">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;                               </span>
+<span class="nt">        &lt;artifactId&gt;activiti-explorer&lt;/artifactId&gt;                    </span>
+<span class="nt">        &lt;version&gt;5.15.1&lt;/version&gt;                                     </span>
+<span class="nt">        &lt;exclusions&gt;                                                        </span>
+<span class="nt">            &lt;exclusion&gt;                                                     </span>
+<span class="nt">                &lt;artifactId&gt;groovy-all&lt;/artifactId&gt;                   </span>
+<span class="nt">                &lt;groupId&gt;org.codehaus.groovy&lt;/groupId&gt;                </span>
+<span class="nt">            &lt;/exclusion&gt;                                                    </span>
+<span class="nt">        &lt;/exclusions&gt;                                                       </span>
+<span class="nt">    &lt;/dependency&gt;                                                           </span>
+<span class="nt">&lt;/dependencies&gt;                                                             </span>
+</pre>
+                            </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="pdfModal" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="false" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:960px;height:600px;border-radius:2px;">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 style="font-size: 16px;text-align:center;font-weight:bold;" class="modal-title"><span class="text-muted">阿里巴巴Java开发手册</span></h4>
+                    </div>
+                    <div id="pdfBody" class="modal-body" style="padding:2px;width:100%;height:540px;">
+                        <iframe id="pdfiframe" src="/assets/plugin/pdf/pdf1.html" width="100%" height="100%" frameborder="0" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/jquery/stickUp.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(function(){
+            jQuery(function($) {
+                $(document).ready( function() {
+                    var nav = $('.nav-wrapper');
+                    nav.stickUp();
+                });
+            });
+        });
+
+        function showPDF() {
+            var winWidth;
+            if (window.innerWidth)
+                winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+                winWidth = document.body.clientWidth;
+            var dis = ( winWidth - 900 ) / 2;
+            var left = "-"+dis+"px";
+            $("#pdfModal").modal("show").css({"margin-left":left});
+        }
+        </script>
+    </body>
+</html>

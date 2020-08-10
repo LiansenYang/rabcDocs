@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <link href="/assets/plugin/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/plugin/bootstrap/css/carousel.css" rel="stylesheet">
+        <link href="/assets/style/font-awesome.min.css" rel="stylesheet" />
+        <link href="/assets/style/site.min.css" rel="stylesheet" />
+        <title>尚筹网</title>
+        <style>
+        body {
+            /*font-family:'Helvetica Neue','Microsoft Yahei', Helvetica, Arial, sans-serif;*/
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size:14px;
+            background-color:#FFF;
+        }
+        body {
+            padding:0px;
+        }
+        
+        #topcontrol {
+          color: #fff;
+          z-index: 99;
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          background: #222;
+          position: relative;
+          right: 14px !important;
+          bottom: 11px !important;
+          border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+          /*top: -2px;*/
+          left: 8.5px;
+          content: "\f106";
+          position: absolute;
+          text-align: center;
+          font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .thumbnail {
+            border-radius: 2px;
+        }
+        
+        .site-nav cite {
+            font-style:normal;
+        }
+        
+        .masthead .masthead-button-links {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border:none;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .bs-docs-footer {
+          padding-top: 50px;
+          padding-bottom: 50px;
+          margin-top: 100px;
+          color: #99979c;
+          text-align: center;
+          background-color: #2a2730;
+        }
+        .bs-docs-footer a {
+          color: #fff;
+        }
+        .bs-docs-footer-links {
+          padding-left: 0;
+          margin-bottom: 20px;
+        }
+        .bs-docs-footer-links li {
+          display: inline-block;
+        }
+        .bs-docs-footer-links li + li {
+          margin-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+          .bs-docs-footer {
+            text-align: left;
+          }
+          .bs-docs-footer p {
+            margin-bottom: 0;
+          }
+        }
+        
+        .bs-docs-section h1 {
+            padding-left : 20px;
+            border-left: 5px solid #c7254e
+        }
+        </style>
+    </head>
+    <body>        
+        <div class="jumbotron masthead" style="margin-bottom:0px;">
+            <div class="container">
+                <h1>@尚筹网</h1>
+                <p class="masthead-button-links">
+                    <a class="btn btn-lg btn-primary" href="/index.html" role="button"><i class="glyphicon glyphicon-share-alt"></i> 项目导航 </a>
+                </p>
+            </div>
+        </div>
+        <div id="courseitems">
+            <div class="container bs-docs-container">
+                <div class="row">
+                    <div class="col-md-9" role="main">
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">项目背景</h1>
+                            <p class="lead">众筹系统，是互联网金融的一种业务模式。可以在互联网上,让用户将创新项目发布到平台上，并通过互联网的注册会员进行融资，达到项目孵化的目的。</p>
+                            <p class="lead">对于年轻的创业者而言，是一个契机、一个机遇、一个开创自己事业的平台。对于注册会员而言，也希望通过对项目的投资，从而获取丰厚的利润。</p>
+                            <p class="lead">尚筹网（<code>AtCrowdfunding</code>）就是在这样一个背景下的，<a href="/page/demo/index.html" target="_blank">互联网创意产品众筹平台</a>。</p>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">项目截图</h1>
+                            <div class="bs-example" data-example-id="simple-carousel">
+                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                                      <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                                    </ol>
+                                    <div class="carousel-inner" role="listbox">
+                                      <div class="item active">
+                                        <img data-src="/assets/img/carousel/c1.jpg" alt="截图" src="/assets/img/carousel/c1.jpg" data-holder-rendered="true">
+                                      </div>
+                                      <div class="item">
+                                        <img data-src="/assets/img/carousel/c2.jpg" alt="截图" src="/assets/img/carousel/c2.jpg" data-holder-rendered="true">
+                                      </div>
+                                      <div class="item">
+                                        <img data-src="/assets/img/carousel/c3.jpg" alt="截图" src="/assets/img/carousel/c3.jpg" data-holder-rendered="true">
+                                      </div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">项目功能模块</h1>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/mod.jpg" alt="功能模块">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">项目架构</h1>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                  <img src="/assets/img/li/frame.jpg" alt="系统架构">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">开发环境</h1>
+                            <p class="lead">软件开发环境(<code>Software Development Environment，SDE</code>)是指在基本硬件和数字软件的基础上，为支持系统软件和应用软件的工程化开发和维护而使用的一组软件，简称<code>SDE</code>。它由软件工具和环境集成机制构成，前者用以支持软件开发的相关过程、活动和任务，后者为工具集成和软件的开发、维护及管理提供统一的支持。</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <colgroup>
+                                        <col class="col-xs-2">
+                                        <col class="col-xs-3">
+                                        <col class="col-xs-3">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>环境</th>
+                                            <th>老师</th>
+                                            <th>学生</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">操作系统</th>
+                                            <td><code>Windows 10</code></td>
+                                            <td>无限制</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Java</th>
+                                            <td><code>JDK1.8</code></td>
+                                            <td><code>JDK1.7</code>以上</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">服务器</th>
+                                            <td><code>Tomcat7</code></td>
+                                            <td><code>Tomcat6</code>以上</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">数据库</th>
+                                            <td><code>MySQL5.5</code></td>
+                                            <td><code>MySQL5.0</code>以上</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">开发工具</th>
+                                            <td><a href="https://spring.io/tools/sts" target="_blank">Spring Tool Suite 3.9.0(<code>STS</code>)</a></td>
+                                            <td><code>STS3.8</code>以上</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="bs-docs-section">
+                            <h1 id="js-overview" class="page-header">项目目标</h1>
+                            <h3 id="overview-doctype">巩固</h3>
+                            <p class="lead">在项目学习中，不仅仅有高级的技术内容，还有基础和原理型的内容，需要通过大量的练习进行巩固。</p>
+                            <h3 id="overview-doctype">增强</h3>
+                            <p class="lead">尚筹网项目是框架学习后的第一个项目，在学习过程中不仅仅需要掌握项目开发的基本内容，也要明白框架在项目中的作用，对框架有更深层次的了解。</p>
+                            <h3 id="overview-doctype">扩展</h3>
+                            <p class="lead">为了提高开发效率以及提供更好的用户体验效果，在项目中，会学习到很多<code>web</code>相关的技术。</p>
+                            <h3 id="overview-doctype">铺垫</h3>
+                            <p class="lead">掌握基本的项目开发后，为学习后面的项目高级部分打下牢固的基础。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" role="complementary">
+                        <div class="bs-docs-section">
+                            <div class="page-header panel panel-default" style="border-radius:2px;">
+                              <div class="panel-heading">众筹网站</div>
+                              <div class="panel-body" style="padding:0px;">
+                                    <div class="list-group" style="border:none;">
+                                      <a href="https://zc.suning.com" target="_blank" class="list-group-item">苏宁众筹</a>
+                                      <a href="https://z.jd.com/sceneIndex.html" target="_blank" class="list-group-item">京东众筹</a>
+                                      <a href="http://www.zhongchou.com/" target="_blank" class="list-group-item">众筹网</a>
+                                      <a href="http://www.demohour.com/" target="_blank" class="list-group-item">点名时间</a>
+                                      <a href="https://www.jumifinance.com/" target="_blank" class="list-group-item">聚米众筹</a>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bs-docs-footer">
+            <div class="container">
+                <ul class="bs-docs-footer-links">
+                    <li><a href="http://www.atguigu.com/" target="_blank">尚硅谷</a></li>
+                    <li><a href="http://ke.atguigu.com/" target="_blank">谷粒学院</a></li>
+                </ul>
+                <p>本课件受开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+            </div>
+        </footer>
+        <script src="/assets/plugin/jquery/jquery-3.2.1.js"></script>
+        <script src="/assets/plugin/layui/lay/dest/layui.all.js"></script>
+        <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/script/back-to-top.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/plugins/respond.min.js"></script>
+        <script src="/assets/plugins/html5shiv.js"></script>
+        <![endif]-->
+        <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        </script>
+    </body>
+</html>

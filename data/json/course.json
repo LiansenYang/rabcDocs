@@ -1,0 +1,143 @@
+[
+    {
+        "id"   : "project-bg",
+        "icon" : "glyphicon glyphicon-text-background",
+        "type" : "",
+        "name" : "背景 & 项目介绍",
+        "remark" : "站在客观的角度观察行业、政策、竞争者、客户、技术等方面的变化和情况",
+        "courses" : [
+            {
+                "name" : "互联网金融",
+                "remark" : "互联网金融（ ITFIN ）是指传统金融机构与互联网企业利用互联网技术和信息通信技术实现资金融通、支付、投资和信息中介服务的新型金融业务模式。",
+                "tags" : [],
+                "icon" : "./assets/img/f693332c-dd40-4fef-8d88-f0c7a55e7dc3.jpg",
+                "url" : "/page/introduce/finance.html"
+            },
+            {
+                "name" : "电商 & 支付 & 众筹",
+                "remark" : "任何和金融相关的互联网应用都属于互联网金融。",
+                "tags" : [],
+                "icon" : "./assets/img/funding.jpg",
+                "url" : "/page/introduce/finance-app.html"
+            },
+            {
+                "name" : "尚筹网",
+                "remark" : "互联网创意产品众筹平台。",
+                "tags" : [],
+                "icon" : "./assets/img/atcrowdfunding.jpg",
+                "url" : "/page/introduce/crowdfunding.html"
+            }
+        ]
+    },
+    {
+        "id"   : "project-conf",
+        "icon" : "glyphicon glyphicon-cog",
+        "type" : "",
+        "name" : "开发软件",
+        "remark" : "在基本硬件和数字软件的基础上，为支持系统软件和应用软件的工程化开发和维护而使用的一组软件。",
+        "courses" : [
+            {
+                "name" : "Windows",
+                "remark" : "美国微软公司研发的一套操作系统。",
+                "tags" : ["操作系统"],
+                "icon" : "./assets/img/window.jpg",
+                "url" : "javascript:;"
+            },
+            {
+                "name" : "JAVA",
+                "remark" : "一门面向对象编程语言，因此Java语言具有功能强大和简单易用两个特征。",
+                "tags" : ["编程语言"],
+                "icon" : "./assets/img/java.jpg",
+                "url" : "javascript:;"
+            },
+            {
+                "name" : "Apache Tomcat",
+                "remark" : "免费的开放源代码的Web 应用服务器，属于轻量级应用服务器。",
+                "tags" : ["服务器"],
+                "icon" : "./assets/img/tomcat.jpg",
+                "url" : "javascript:;"
+            },
+            {
+                "name" : "Rational Rose",
+                "remark" : "一种面向对象的统一建模语言的可视化建模工具。用于可视化建模和公司级水平软件应用的组件构造。",
+                "tags" : ["建模工具"],
+                "icon" : "./assets/img/rose.jpg",
+                "url" : "/page/soft/rose.html"
+            },
+            {
+                "name" : "PowerDesigner",
+                "remark" : "采用模型驱动方法，将业务与IT结合起来，可帮助部署有效的企业体系架构，并为研发生命周期管理提供强大的分析与设计技术。",
+                "tags" : ["建模工具"],
+                "icon" : "./assets/img/pd.jpg",
+                "url" : "/page/soft/pd.html"
+            },
+            {
+                "name" : "Apache Maven",
+                "remark" : "项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。",
+                "tags" : ["项目管理", "工具"],
+                "icon" : "./assets/img/maven.jpg",
+                "url" : "/page/soft/maven.html"
+            },
+            {
+                "name" : "Subversion（SVN）",
+                "remark" : "Subversion的简称，是一个开放源代码的版本控制系统。",
+                "tags" : ["项目管理", "工具"],
+                "icon" : "./assets/img/svn.jpg",
+                "url" : "javascript:;"
+            }
+        ]
+    },
+    {
+        "id"   : "project-framework",
+        "icon" : "glyphicon glyphicon-th-large",
+        "type" : "",
+        "name" : "系统架构",
+        "remark" : "搭建Web项目的基础环境，让你可以顺利的开发WEB项目。",
+        "courses" : [
+            {
+                "name" : "SSM架构",
+                "remark" : "成熟，稳定，流行的项目基础架构。",
+                "tags" : ["基础架构"],
+                "icon" : "./assets/img/ssm.jpg",
+                "url" : "/page/framework/ssm.html"
+            },
+            {
+                "name" : "分布式架构",
+                "remark" : "分布式计算技术的应用和工具，目前成熟的技术包括J2EE, CORBA和.NET(DCOM)。",
+                "tags" : ["基础架构"],
+                "icon" : "./assets/img/distributed.jpg",
+                "url" : "/page/framework/distributed.html"
+            }
+        ]
+    },
+    {
+        "id"   : "project-business",
+        "icon" : "glyphicon glyphicon-briefcase",
+        "type" : "",
+        "name" : "业务开发",
+        "remark" : "通过JAVA相关技术完成业务的功能开发。",
+        "courses" : [
+            {
+                "name" : "RBAC权限模型",
+                "remark" : "项目设计中常用的权限设计模型，用于解决项目中关于权限相关的问题。",
+                "tags" : ["设计模型"],
+                "icon" : "./assets/img/rbac.jpg",
+                "url" : "/page/module/rbac.html"
+            },
+            {
+                "name" : "zTree",
+                "remark" : "jQuery插件，用于将数据以树形的方式展现出来。",
+                "tags" : ["插件"],
+                "icon" : "./assets/img/ztree.jpg",
+                "url" : "/page/module/ztree.html"
+            },
+            {
+                "name" : "FreeMarker",
+                "remark" : "一款模板引擎： 即一种基于模板和要改变的数据，并用来生成输出文本（HTML网页、电子邮件、配置文件、源代码等）的通用工具。",
+                "tags" : ["视图"],
+                "icon" : "./assets/img/freemarker.jpg",
+                "url" : "/page/module/freemarker.html"
+            }
+        ]
+    }
+]
